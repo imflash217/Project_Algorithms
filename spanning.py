@@ -44,22 +44,23 @@ def spanning(input_stack):
 
 		while not(D.isEmpty() or done):
 			if(input_stack.peek(i) >= input_stack.peek(D.top())):
-				print input_stack.peek(i), input_stack.peek(D.top())
-				print D.top()
+				# print input_stack.peek(i), input_stack.peek(D.top())
+				# print 'D.top()', D.top()
+				# print 'i', i
 				D.pop()
 
 			else:
 				done = True
-
-		if(D.isEmpty):
+		# print 'D.size()', D.size(), D.isEmpty()
+		if(D.isEmpty()):
 			h = -1
-			print 'h', h
+			# print 'h', h
 		else:
 			h = D.top()
-			print 'h', h
+			# print 'h', h
 
 		span.push(i-h)
-		print 'span ---> ', span.top()
+		print 'span[%d] ---> '%i, span.top()
 
 		D.push(i)
 	return span
