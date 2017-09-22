@@ -55,10 +55,9 @@ std::cout << u + i << endl;	// if 32 bit ints; prints 4294967264
 
 * Integer `literals` that begin with `0` are called `octal`.
 * Integer `literals` that begin with `0x` or `0X` are called `Hexadecimal`.
-
 ```
-20		// decimal
-024		// octal
+20	// decimal
+024	// octal
 0x43	// hexadecimal
 0X43	// hexadecimal
 ```
