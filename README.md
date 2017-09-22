@@ -93,7 +93,9 @@ backspace ------- \b	carriage return --- \r
 ```
 * `true` and `false` are **bool literals**.
 * `nullptr` is a **pointer literal**.
-* 
+* C++ programers tedn to refer to `variables` as **variables** or **objects** interchangeably.
+
+
 
 
 
