@@ -32,8 +32,53 @@ principal, and payment? Explain why you selected each type.
 
 ```
 
-**Q.[2.3]** 
+**`Q.[2.5]`** Determine the type of each of the following literals. Explain the differences among the literals in each of the four examples:
+(a) ’a’, L’a’, "a", L"a"
+(b) 10, 10u, 10L, 10uL, 012, 0xC
+(c) 3.14, 3.14f, 3.14L
+(d) 10, 10u, 10., 10e-2
 
+```
+$ 'a', L'a', "a", L"a" :
+@ 'a' ------ a character literal --- type char
+  L'a' ----- a character literal --- type wchar_t
+  "a" ------ a string literal ------ type char (array of constant chars)
+  L"a" ----- a string literal ------ type wchar_t (array of constant wchar_t)
+-----------------------------
+
+$ 10, 10u, 10L, 10uL, 012, 0xC :
+@ 10 ------- int -------------- 16 bits
+  10u ------ unsigned int ----- 16 bits
+  10L ------ long ------------- 32 bits
+  10uL ----- unsigned long ---- 32 bits
+  012 ------ int -------------- octal literal 
+  0xC ------ int -------------- hexadeciaml literal
+----------------------------------------------
+
+$ 3.14, 3.14f, 3.14L :
+@ 3.14 ----- double (floating point literal are double by default)
+  3.14f ---- float
+  3.14L ---- long double
+----------------------------------------------
+
+$ 10, 10u, 10.0, 10e-2 :
+@ 10 -------- int 
+  10u ------- unsigned int
+  10.0 ------ double (floating point literal are double by default)
+  10e-2 ----- double (floating point literal are double by default)
+```
+
+**`Q. [2.6]`** What, if any, are the differences between the following definitions:
+int month = 9, day = 7;
+int month = 09, day = 07;
+
+```
+$ int month = 9, day = 7;
+@ here month & day are integers for DECIMAL values of 9 & 7 respectively.
+
+$ int month = 09, day = 07;
+@ Here month & day are integers for OCTAL values of 09 & 07 respectively.
+```
 
 
 

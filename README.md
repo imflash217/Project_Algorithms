@@ -91,6 +91,8 @@ horizontal tab -- \h	question mark ----- \?
 backslash ------- \\	formfeed ---------- \f
 backspace ------- \b	carriage return --- \r
 ```
+* `true` and `false` are **bool literals**.
+* `nullptr` is a **pointer literal**.
 * 
 
 
