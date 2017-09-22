@@ -61,10 +61,37 @@ std::cout << u + i << endl;	// if 32 bit ints; prints 4294967264
 0x43	// hexadecimal
 0X43	// hexadecimal
 ```
+* By default, `deciaml literals are signed`; while `octal` and `hexadecimal` literals can be either signed or unsigned.
+* **There are no literals of type `short`**.
+
+* **`Decimal` literals**:
+	* `int`
+	* `long`
+	* `long long`
+	
+* **`Octal` & `Hexadecimal` literals**:
+	* `int`, `unsigned int`
+	* `long`, `unsigned long`
+	* `long long`, `unsigned long long`
 
 
+* By default, the `floating-point literal` has type `double`.
+```
+'a' ----- a character literal
+"a" ----- a string literal
+```
+* in C++, the compiler appends a `'\0'` to every `string literal`.
 
+```cpp
+Escape Sequences in C++ :
 
+newline	--------- \n	double quote ------ \"
+vertical tab ---- \v	single quote ------ \'
+horizontal tab -- \h	question mark ----- \?
+backslash ------- \\	formfeed ---------- \f
+backspace ------- \b	carriage return --- \r
+```
+* 
 
 
 
