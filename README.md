@@ -27,13 +27,13 @@ Perhaps, the most important feature in `C++` is `CLASS`, which allows users to d
 8. long -------- Long Integer -------- 32 bits
 9. long long --- Long Integer -------- 64 bits
 
-10. float ---------- Single precision floating point --- 6 significant digits
-11. double --------- Double precision floating point --- 10 significant digits
-12. long double ---- Double precision floating point --- 10 significant digits
+10. float ---------- Single precision floating point ----- 6 significant digits
+11. double --------- Double precision floating point ----- 10 significant digits
+12. long double ---- Extended precision floating point --- 10 significant digits
 ```
 * A `char` is guaranteed to be big enough to hold numeric values of the machine's basic character set. So, `char` is same size as machine's single `byte`.
 
-
+* Except for `bool` and `extended character types`; the `integral types` may be either **`Signed or Unsigned`**.
 
 
 
