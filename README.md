@@ -33,7 +33,7 @@ Perhaps, the most important feature in `C++` is `CLASS`, which allows users to d
 ```
 * A `char` is guaranteed to be big enough to hold numeric values of the machine's basic character set. So, `char` is same size as machine's single `byte`.
 
-* ==Except for `bool` and `extended character types`; the `integral types` may be either **`Signed or Unsigned`**.==
+* Except for `bool` and `extended character types`; the `integral types` may be either **`Signed or Unsigned`**.
 
 
 
