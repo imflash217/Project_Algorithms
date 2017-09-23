@@ -137,14 +137,14 @@ public void functionA(.....){
 ```
 C++ Keywords:
 
-alignas		else		public		unsigned
-alignof		enum		register	using
+alignas		else		public			unsigned
+alignof		enum		register		using
 asm		explicit	reinterpret_cast	
-auto		export		return		virtual
-bool		extern		short		void
-break		false		signed		volatile
-case		float		sizeof		wchar_t
-catch		for		static		while
+auto		export		return			virtual
+bool		extern		short			void
+break		false		signed			volatile
+case		float		sizeof			wchar_t
+catch		for		static			while
 char		friend		static_assert
 char16_t	goto		static_cast
 char32_t	if		struct
@@ -180,7 +180,17 @@ not		xor_eq
 		* `lvalue`
 	* Pointers
 
+* **Refrences**: A reference is NOT an object. It's just another name for an already existing object.
+When we define a refernce, instead of copying the initializer's value, we **bind** the refernce to its initializer.
+Once initialized, a refernce remains bound to its initial object.
+There is no way to rebind a refernce to refer to another object.
+As there is no way to rebind a refernce, **`references` must be initialized**.
 
+```c++
+int ival = 217;
+int &refVal = ival;	// refVal refers to (is another name for) ival
+int &refVal2;		// ERROR. references must be initialized.
+```
 
 
 
