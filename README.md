@@ -101,12 +101,84 @@ backspace ------- \b	carriage return --- \r
 	* Variables defined **inside a function body** are **`unitialized`**.
 	* Uninitialized objects of built-in type defined inside a function body have undefined value.
 	
+* **`Declaration`**: It makes a name known to the program.
+* **`Definition`** : It creates an associated entity. It provides name, type & storage and may also assign some initial value to the entity.
+* Any Declaration that has an initializer is a definition.
 
+* **`extern`** :  To obtain a declaration that is not definition we use the keyword `extern`.
+	* An `extern` that has an initializer is a Definition.
+	* Its an ERROR to privide an initializer on an `extern` **inside a function**.
+```
+extern int i; 		 // it declares but doesnot define i.
+int j; 			 // it declares & defines j. 
+
+extern int k = 1234; 	 // k = 1234; initlization overrides the extern keyword.
+
+//---------------------------------
+public void functionA(.....){
+	......
+	extern double my_double = 2.17;		// ERROR; initialization not allowed on an extern inside a function
+	......
+}
+//---------------------------------
+```
+
+* Variables must be defined exactly once but can be declared multiple times.
+* To use the same variable in multiple files, we must **declare** the variable in all files but **define** that variable in one-and-only-one file.
+
+* **`IDENTIFIERS`**:
+	* Can be composed of `letters`, `digits`, & `undersore character`.
+	* Must begin with either `letter` or `underscore`.
+	* User-defined identifiers cannot contain two `underscore` characters.
+	* User-defined identifiers cannot begin with `underscore` followed by an UPPERCASE letter.
+	* Identifiers defined **outside a function** may not begin with `underscore`.
 	
 
+```
+C++ Keywords:
 
+alignas		else		public		unsigned
+alignof		enum		register	using
+asm		explicit	reinterpret_cast	
+auto		export		return		virtual
+bool		extern		short		void
+break		false		signed		volatile
+case		float		sizeof		wchar_t
+catch		for		static		while
+char		friend		static_assert
+char16_t	goto		static_cast
+char32_t	if		struct
+class		inline		switch
+const		int		template
+constexpr	long		this
+const_cast	mutable		thread_local
+continue	namespace	throw
+decltype	new		true
+default		noexcept	try
+delete		nullptr		typedef
+do		operator	typeid
+double		private		typename
+dynamic_cast	protected	union
 
+//----------------------------------------------
 
+C++ Alternative operator names:
+
+and		not
+and_eq		not_eq
+bitand		or
+bitor		or_eq
+compl		xor
+not		xor_eq
+
+```
+* The global scope has no name. Hence when the scope operator(`::`) has an empty lefthand side, it is a request to fetch the name on the right-hand side from the global scope.
+
+* **COMPOUND TYPES**:
+	* References
+		* `rvalue`
+		* `lvalue`
+	* Pointers
 
 
 
