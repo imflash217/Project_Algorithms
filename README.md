@@ -95,7 +95,14 @@ backspace ------- \b	carriage return --- \r
 * `nullptr` is a **pointer literal**.
 * C++ programers tedn to refer to `variables` as **variables** or **objects** interchangeably.
 
+* **Default Variable Initialization** :
+	* The value of an object of built-in type that is not explicitly initialized depends on **where it is defined**.
+	* Variables defined **outside a function body** are initialized to **`zero`**.
+	* Variables defined **inside a function body** are **`unitialized`**.
+	* Uninitialized objects of built-in type defined inside a function body have undefined value.
+	
 
+	
 
 
 

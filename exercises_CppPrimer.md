@@ -80,6 +80,62 @@ $ int month = 09, day = 07;
 @ Here month & day are integers for OCTAL values of 09 & 07 respectively.
 ```
 
+**`Q. [2.9]`**Explain the following definitions. For those that are illegal, explain
+what’s wrong and how to correct it.
+(a) std::cin >> int input_value; 
+(b) int i = { 3.14 };
+(c) double salary = wage = 9999.99; 
+(d) int i = 3.14;
+
+```
+$ std::cin >> int input_value;
+@ CORRECT. Here, we are defining input_vale as int.
+
+$ int i = {3.14};
+@ WRONG. List initialization is illegal if their is a data loss. Here, we are assigning a floating point value to an int type.
+
+$ double salary = wage = 9999.99;
+@ WRONG. 'wage' is not defined; so 'salary = wage' assignment is wrong.
+
+$ int  i = 3.14;
+@ CORRECT. An int object can be assigned a floating point value; however its value will be truncated.
+```
+
+**`Q. [2.10]`** What are the initial values, if any, of each of the following variables?
+
+```
+$ 	std::string global_str;
+	int global_int;
+	int main()
+	{
+		int local_int;
+		std::string local_str;
+	}
+
+
+@ global_str --> empty
+  global_int = 0
+  local_int --> uninitialized / undefined value
+  local_str --> uninitialized / undefined value
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
