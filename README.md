@@ -181,10 +181,12 @@ not		xor_eq
 	* Pointers
 
 * **Refrences**: A reference is NOT an object. It's just another name for an already existing object.
-When we define a refernce, instead of copying the initializer's value, we **bind** the refernce to its initializer.
-Once initialized, a refernce remains bound to its initial object.
-There is no way to rebind a refernce to refer to another object.
-As there is no way to rebind a refernce, **`references` must be initialized**.
+
+	When we define a refernce, instead of copying the initializer's value, we **bind** the refernce to its initializer.
+
+	Once initialized, a refernce remains bound to its initial object.
+	There is no way to rebind a refernce to refer to another object.
+	As there is no way to rebind a refernce, **`references` must be initialized**.
 
 ```c++
 int ival = 217;
