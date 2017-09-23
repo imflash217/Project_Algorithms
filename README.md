@@ -46,7 +46,7 @@ Infact in some machines, double-precision calculations are faster.
 * If we assigned an out-of-range value to an object of **`signed`** type, the result is **undefined**. The program might appear to work or crash or take garbage values.
 * If we used both `unsigned` and `int` in an arithmetic operation, then the `int` is implictly converted to `unsigned`.
 
-```
+```c++
 unsigned u = 10;
 int i = -42;
 std::cout << i + i << endl;	// prints -84
@@ -108,7 +108,7 @@ backspace ------- \b	carriage return --- \r
 * **`extern`** :  To obtain a declaration that is not definition we use the keyword `extern`.
 	* An `extern` that has an initializer is a Definition.
 	* Its an ERROR to privide an initializer on an `extern` **inside a function**.
-```
+```c++
 extern int i; 		 // it declares but doesnot define i.
 int j; 			 // it declares & defines j. 
 
@@ -192,10 +192,26 @@ not		xor_eq
 int ival = 217;
 int &refVal = ival;	// refVal refers to (is another name for) ival
 int &refVal2;		// ERROR. references must be initialized.
+
+// REFERENCE IS JUST AN ALIAS
+
+// After a reference is defined, all operations on that reference are actually operations on the object to which it is bound
+
+refVal = 2;	// assigns 2 to the object to which refVal is bound i.e. now, ival = 2;
+int ii = refVal;	// same as ii = ival;
+
+int &refVal3 = refVal;	// refVal3 refers to the object to which refVal is bound i.e. ival
+int j = refVal3;	// initializes j to same value as ival
+
 ```
+* The type of refernce and object must be the same.
+* A refernce can be bound only to an `object`; not to a `literal` or `an expresion`.
 
-
-
+```c++
+int &refVal4 = 10;	// ERROR. Reference can't be bount to a literal (10)
+double m_dval = 3.14;
+int &refVal5 = m_dval;	// ERROR. Reference and object types must match. initializer must be an int type
+```
 
 
 
