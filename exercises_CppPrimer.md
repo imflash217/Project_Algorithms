@@ -1,6 +1,6 @@
 **`Q.[2.1]`** What are the differences between `int, long, long long`, and `short`? Between an `unsigned` and a `signed` type? Between a `float` and a `double`?
 
-```
+```c++
 $ int, long, long long & short:
 @ Each one of the above types have different storage capacities:
 	int -------- 16 bits
@@ -38,7 +38,7 @@ principal, and payment? Explain why you selected each type.
 (c) 3.14, 3.14f, 3.14L
 (d) 10, 10u, 10., 10e-2
 
-```
+```c++
 $ 'a', L'a', "a", L"a" :
 @ 'a' ------ a character literal --- type char
   L'a' ----- a character literal --- type wchar_t
@@ -72,7 +72,7 @@ $ 10, 10u, 10.0, 10e-2 :
 int month = 9, day = 7;
 int month = 09, day = 07;
 
-```
+```c++
 $ int month = 9, day = 7;
 @ here month & day are integers for DECIMAL values of 9 & 7 respectively.
 
@@ -87,7 +87,7 @@ what’s wrong and how to correct it.
 (c) double salary = wage = 9999.99; 
 (d) int i = 3.14;
 
-```
+```c++
 $ std::cin >> int input_value;
 @ CORRECT. Here, we are defining input_vale as int.
 
@@ -103,7 +103,7 @@ $ int  i = 3.14;
 
 **`Q. [2.10]`** What are the initial values, if any, of each of the following variables?
 
-```
+```c++
 $ 	std::string global_str;
 	int global_int;
 	int main()
@@ -119,7 +119,22 @@ $ 	std::string global_str;
   local_str --> uninitialized / undefined value
 ```
 
+**`Q. [2.26]`** Which of the following are legal? For those that are illegal, explain why.
+(a) const int buf; (b) int cnt = 0;
+(c) const int sz = cnt; (d) ++cnt; ++sz;
 
+```c++
+$ const int buf;
+  int cnt = 0;
+  const int sz = cnt;
+  ++cnt; ++sz;
+ 
+@ const int buf;	// ERROR. const variables must be initialized
+  int cnt = 0;		// OK. 
+  const int sz = cnt;	// OK. const variable 'sz' is initialized to integer 'cnt'
+  ++cnt;		// OK. cnt is an normal integer
+  ++sz;			// ERROR. const variables cannot be changed.
+```
 
 
 

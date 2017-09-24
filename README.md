@@ -223,13 +223,56 @@ const int k;			// ERROR. k is uninitialized const
 * To define a single instance of `const` variable that is accessible to other files, we use the `extern` keyword on both its **definition** and **declaration(s)**.
 ```c++
 // file1.cpp 
-// define and initializes a const that is accessible to other files
+// define and initializes a const, extern keyword specifies that bufSize is accessible to other files
 extern const int bufSize = func();
 
 // file2.cpp 
 // here extern specifies that the definition of bufSize is not local its somewhere else
 extern const int bufSize;	// same bufSize as defined in file1.cpp
 ```
+
+* Unlike ordinary references, a **reference to `const`** cannot be used to change the object's value.
+
+```c++
+const int bufSize = 217;	// OK.
+const int &ref1 = bufSize;	// OK. ref1 is a refernce to const variable bufSize
+int &ref2 = bufSize		// ERROR. non-const reference can't refer to a const variable
+
+ref1 = 2491;			// ERROR. refrence to const can't change the object's value
+```
+
+* Binding a `reference to const` to a non-`const` object is LEGAL; but the refernce can't be used to change the value of the non-`const` object.
+
+```c++
+int i = 217;
+
+int &ref1 = i;		// ref1 is bound to 'i'. ref1 can be used to change the value of 'i'
+const int &ref2 = i;	// ref2 is bound to 'i'. BUT ref2 can be used to change value of i
+			// b'coz ref2 is a 'refernce to const'
+
+ref1 = 2491;		// OK. ref1 is not const. now, "i = 2491"
+ref2 = 1020;		// ERROR. ref2 is a 'refernce to const'. still "i = 2491"
+```
+
+* We can define **pointers** that point to either `const` or non-`const`.
+* A **pointer to `const`** may not be used to change the object to which it points.
+* We may store the address of a `const` object only in a **pointer to `const`**.
+
+```c++
+const double pi = 3.14;		// OK. pi is a const double; its value can't be changed
+double *ptr = &pi;		// ERROR. non-const pointer(ptr) can't point to a const object (pi)
+const double *cptr = &pi;	// OK. only const pointers can store the address of const object
+
+*cptr = 2.17;			// ERROR. cant assign to *cptr
+```
+
+* **EXCEPTION**: We can use a **pointer to `const`** to point to a non-`const` object but, can't change the object's value through the pointer.
+
+```c++
+double pi = 3.14;	// OK. non-const object
+const double *cptr = &pi;	// OK. but cant use cptr to change the value of pi
+```
+* Like **refernce to `const`**, a **pointer to `const`** says nothing about whether the object to which it points is a `const` or not.
 
 
 
