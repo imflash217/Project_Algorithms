@@ -328,7 +328,11 @@ int &r = ci;	// ERROR: 'ci' is a const; but r doesn't refer to const
 const int &r2 = i;	// OK: can bind const int refernce to a plain int
 ```
 
-* 
+* **`const ` expressions**: 
+	* An expression whose value cannot be chnaged.
+	* It value can be evaluated at compile time.
+	* A `const` object that is initialized from a `const` expression is also a `const` expression
+	
 
 
 
