@@ -213,6 +213,27 @@ double m_dval = 3.14;
 int &refVal5 = m_dval;	// ERROR. Reference and object types must match. initializer must be an int type
 ```
 
+* Because we can't change the value of the `const` object after we create it must be initialized.
+
+```
+const int i =  get_size();	// OK. initialized at runtime
+const int j = 32;		// OK. initialized at compile time
+const int k;			// ERROR. k is uninitialized const
+```
+* To define a single instance of `const` variable that is accessible to other files, we use the `extern` keyword on both its **definition** and **declaration(s)**.
+```c++
+// file1.cpp 
+// define and initializes a const that is accessible to other files
+extern const int bufSize = func();
+
+// file2.cpp 
+// here extern specifies that the definition of bufSize is not local its somewhere else
+extern const int bufSize;	// same bufSize as defined in file1.cpp
+```
+
+
+
+
 
 
 
