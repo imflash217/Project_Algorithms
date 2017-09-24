@@ -277,6 +277,13 @@ const double *cptr = &pi;	// OK. but cant use cptr to change the value of pi
 * Unlike references, **pointers** are `object`. So, pointers can be `const` too.
 * **`const` pointers**: Like any other `const` objects, a `const pointer` must be initialized & once initialized its value cannot be changed.
 
+```c++
+int errNumb = 0;
+int *const pErr = &errNumb;	// pErr is a const pointer. pErr will always point to errNumb
+const double pi = 3.17;
+const double *const pip = &pi;	// pip is a const pointer to a const object
+				// neither the value of the object addressed by 'pip' nor the address stored in 'pip' can be changed
+```
 
 
 
