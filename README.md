@@ -274,6 +274,9 @@ const double *cptr = &pi;	// OK. but cant use cptr to change the value of pi
 ```
 * Like **refernce to `const`**, a **pointer to `const`** says nothing about whether the object to which it points is a `const` or not.
 
+* Unlike references, **pointers** are `object`. So, pointers can be `const` too.
+* **`const` pointers**: Like any other `const` objects, a `const pointer` must be initialized & once initialized its value cannot be changed.
+
 
 
 
