@@ -215,7 +215,7 @@ int &refVal5 = m_dval;	// ERROR. Reference and object types must match. initiali
 
 * Because we can't change the value of the `const` object after we create it must be initialized.
 
-```
+```c++
 const int i =  get_size();	// OK. initialized at runtime
 const int j = 32;		// OK. initialized at compile time
 const int k;			// ERROR. k is uninitialized const
