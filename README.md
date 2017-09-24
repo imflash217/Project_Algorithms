@@ -280,10 +280,106 @@ const double *cptr = &pi;	// OK. but cant use cptr to change the value of pi
 ```c++
 int errNumb = 0;
 int *const pErr = &errNumb;	// pErr is a const pointer. pErr will always point to errNumb
-const double pi = 3.17;
+const double pi = 3.14;
 const double *const pip = &pi;	// pip is a const pointer to a const object
 				// neither the value of the object addressed by 'pip' nor the address stored in 'pip' can be changed
+				
+*pip = 2.17;			// ERROR. pip points to a const object
+
+if (*pErr){			// if the object to which pErr points (i.e. errNumb) is non-zero
+	.....
+	*pErr = 0;		// OK
+	.....
+}
+
 ```
+* **`top-level` & `low-level` `const`**:
+* `top-level const`: Used to indicate that the pointer inself is a `const`.
+* `low-level const`: When a pointer refers to a `const` object, we refer to that `const` as a low-level `const`.
+* The distinction b/w **top-level** and **low-level** matters when we copy an object. 
+* When we copy an object, top-level `const` are ignored.
+* Wen we copy an object both objects must have same low-level `const` qualifications. **Low-level `const` are never ignored.**
+
+```c++
+int i = 0;
+int *const p1 = &i;		// const is top-level
+const int ci = 42;		// const is top-level
+const int *p2 = &ci;		// const is low-level
+const int *const p3 = p2;	// rightmost const is top-level; leftmost const is low-level
+const int &r = ci;		// const is low-level
+
+//----------------------------------------------------------
+
+i = ci;		// OK copying the value of ci; top-level const in 'ci' ignored
+p2 = p3;	// OK. pointed-to type matches; top-level const in 'ci' ignored
+
+//----------------------------------
+
+// When we copy p3 we can ignore its top-level const but not the fact that it points to a const type
+// Thus, we can't use p3 to initialize p4 (which points to plain int)
+
+int *p4 = p3;	// ERROR: p3 has a low-level const but p4 doesn't
+
+//-------------------
+p2 = p3;	// OK: both p2 and p3 points to the object of same const type
+
+p2 = &i;	// OK. we can convert int* to const int*
+int &r = ci;	// ERROR: 'ci' is a const; but r doesn't refer to const
+const int &r2 = i;	// OK: can bind const int refernce to a plain int
+```
+
+* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

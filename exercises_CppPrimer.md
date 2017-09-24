@@ -33,11 +33,12 @@ principal, and payment? Explain why you selected each type.
 ```
 
 **`Q.[2.5]`** Determine the type of each of the following literals. Explain the differences among the literals in each of the four examples:
+```c++
 (a) ’a’, L’a’, "a", L"a"
 (b) 10, 10u, 10L, 10uL, 012, 0xC
 (c) 3.14, 3.14f, 3.14L
 (d) 10, 10u, 10., 10e-2
-
+```
 ```c++
 $ 'a', L'a', "a", L"a" :
 @ 'a' ------ a character literal --- type char
@@ -69,9 +70,10 @@ $ 10, 10u, 10.0, 10e-2 :
 ```
 
 **`Q. [2.6]`** What, if any, are the differences between the following definitions:
+```c++
 int month = 9, day = 7;
 int month = 09, day = 07;
-
+```
 ```c++
 $ int month = 9, day = 7;
 @ here month & day are integers for DECIMAL values of 9 & 7 respectively.
@@ -82,11 +84,12 @@ $ int month = 09, day = 07;
 
 **`Q. [2.9]`**Explain the following definitions. For those that are illegal, explain
 what’s wrong and how to correct it.
+```c++
 (a) std::cin >> int input_value; 
 (b) int i = { 3.14 };
 (c) double salary = wage = 9999.99; 
 (d) int i = 3.14;
-
+```
 ```c++
 $ std::cin >> int input_value;
 @ CORRECT. Here, we are defining input_vale as int.
@@ -120,9 +123,12 @@ $ 	std::string global_str;
 ```
 
 **`Q. [2.26]`** Which of the following are legal? For those that are illegal, explain why.
-(a) const int buf; (b) int cnt = 0;
-(c) const int sz = cnt; (d) ++cnt; ++sz;
-
+```c++
+(a) const int buf; 
+(b) int cnt = 0;
+(c) const int sz = cnt; 
+(d) ++cnt; ++sz;
+```
 ```c++
 $ const int buf;
   int cnt = 0;
@@ -136,7 +142,40 @@ $ const int buf;
   ++sz;			// ERROR. const variables cannot be changed.
 ```
 
+**`Q. [2.30]`** For each of the following declarations indicate whether the object being declared has top-level or low-level const: 
+```c++
+const int v2 = 0; 
+int v1 = v2;
+int *p1 = &v1, &r1 = v1;
+const int *p2 = &v2, *const p3 = &i, &r2 = v2;
+```
+```c++
+$ const int v2 = 0;
+@ v2 ---- top-level const
+  v2 is a variable of const type, its value can not be changed ever.
+  
+$ int v1 = v2;
+@ v1 ---- neither
+  v2 has top-level const and top-level const are ignored while copying. So correct code
+  
+$ int *p1 = &v1, &r1 = v1;
+@ p1 ---- neither
+  r1 ---- neither
+  
+$ const int *p2 = &v2, *const p3 = &i, &r2 = v2;
+@ p1 ---- low-level const
+  p3 ---- low-level const and top-level const
+  r2 ---- low-level const
+  
+//-------------------------------------
 
+r1 = v2;	// ERROR
+p1 = p2;	// ERROR
+p1 = p3		// ERROR
+p2 = p1;	// ERROR
+p2 = p3;	// OK
+
+```
 
 
 
