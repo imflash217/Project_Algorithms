@@ -333,6 +333,10 @@ const int &r2 = i;	// OK: can bind const int refernce to a plain int
 	* It value can be evaluated at compile time.
 	* A `const` object that is initialized from a `const` expression is also a `const` expression
 	
+* Variables defined inside a function ordinarily are not stored at fixed addresses. Hence we can not use `constexpr` pointers to point to such variables.
+
+* The address of any variable defined outside any function is a constant expression. So we can use `constexpr` pointers to point to such objects.
+
 
 
 
