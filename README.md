@@ -333,9 +333,25 @@ const int &r2 = i;	// OK: can bind const int refernce to a plain int
 	* It value can be evaluated at compile time.
 	* A `const` object that is initialized from a `const` expression is also a `const` expression
 	
-* Variables defined inside a function ordinarily are not stored at fixed addresses. Hence we can not use `constexpr` pointers to point to such variables.
+* **Variables defined inside a function ordinarily are not stored at fixed address**. Hence we can not use `constexpr` pointers to point to such variables.
 
 * The address of any variable defined outside any function is a constant expression. So we can use `constexpr` pointers to point to such objects.
+
+* When we specify a pointer in a `constexpr` declaration, the `constexpr` specifier applies to the pointer not the type to which the pointer points.
+```c++
+const int *p = nullptr;		// p is a pointer to a const int
+constexpr int *q = nullptr;	// q is a const pointer to int
+```
+* `constexpr` imposes a top-level `const` on the objects it defines
+```c++
+constexpr int *np = nullptr;		// np is a const pointer to int that is a null
+int j = 0;
+constexpr int i = 217;			// i is a const int
+
+// i & j must be defined outside any function
+constexpr const int *p1 = &i;		// p1 is a const pointer to a const int i
+constexpr int *p2 = &j;			// p2 is a const pointer to an int j
+```
 
 
 
