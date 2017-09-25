@@ -104,6 +104,7 @@ backspace ------- \b	carriage return --- \r
 * **`Declaration`**: It makes a name known to the program.
 * **`Definition`** : It creates an associated entity. It provides name, type & storage and may also assign some initial value to the entity.
 * Any Declaration that has an initializer is a definition.
+* A Declaration can involve only a single base type.
 
 * **`extern`** :  To obtain a declaration that is not definition we use the keyword `extern`.
 	* An `extern` that has an initializer is a Definition.
@@ -205,10 +206,12 @@ int j = refVal3;	// initializes j to same value as ival
 
 ```
 * The type of refernce and object must be the same.
-* A refernce can be bound only to an `object`; not to a `literal` or `an expresion`.
+* A plain refernce can be bound only to an `object`; not to a `literal` or `an expresion`.
+* But, we can bind a `const reference` to a `literal`.
 
 ```c++
 int &refVal4 = 10;	// ERROR. Reference can't be bount to a literal (10)
+const int &ref = 217;	// OK: We can bind a const reference to a literal (217)
 double m_dval = 3.14;
 int &refVal5 = m_dval;	// ERROR. Reference and object types must match. initializer must be an int type
 ```
@@ -366,7 +369,30 @@ using SI = Sales_Item;		// SI is a synonym for Sales_Item
 wages hourly, weekly;		// same as "double hourly, weekly"
 SI item;			// same as "Sales_Item item;
 ```
-* 
+```c++
+typedef char *pstring;		// pstring is "pointer to char" type
+const pstring cstr = 0;		// cstr is a const of type 'pstring' i.e cstr a 'const pointer to a char'
+const pstring *ps;		// ps is pointer that points to a const pstring (i.e ps is a pointer that points to a constant 'pointer to char')
+
+//-----------------------
+
+const char *cstr = 0;		// ERROR: wrong interpretation of "const pastring cstr = 0"
+```
+* **ERROR** to interpret a declaration that uses a type alias by conceptually replacing the alias with its corresponding type.
+
+* **`auto`** ordinarily ignore top-level `const`. If we want the deduced type to have top-level `const` we must say so explicitly.
+
+* When we define several variables in the same statement, it's important to remeber that `reference` or `pointer` is part of a particular declarator not part of the base type of declaration.
+
+```c++
+int i = 0;		
+const int ci =i;		// OK: ci has "top-level const"
+auto k = ci, &l = i;		// OK: k is a "int" (top-level const are ignored while copying in auto), l is "int&"
+auto &m = ci, *p = &ci		// OK: m is a "const int", p is a pointer to a "const int"
+
+auto &n = i, *p2 = &ci;		// ERROR: type deduced from 'i' is 'int', but type deduced from '&ci' is 'const int'
+```
+
 
 
 
