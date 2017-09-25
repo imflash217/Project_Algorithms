@@ -352,8 +352,21 @@ constexpr int i = 217;			// i is a const int
 constexpr const int *p1 = &i;		// p1 is a const pointer to a const int i
 constexpr int *p2 = &j;			// p2 is a const pointer to an int j
 ```
+* A **type alias** is a name that is a synonym for another type.
+* **Type alias** can be defined in the following two ways:
+	* **`typedef`** keyword
+	* **`using`** keyword
+```c++
+typedef double wages;		// wages is a synonym for double
+typedef wages base, *p;		// base is synonym for double, p is double*
 
+using SI = Sales_Item;		// SI is a synonym for Sales_Item
 
+// A type alias is a type name and can appear wherever a type name can appear
+wages hourly, weekly;		// same as "double hourly, weekly"
+SI item;			// same as "Sales_Item item;
+```
+* 
 
 
 
