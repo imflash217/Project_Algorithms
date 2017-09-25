@@ -260,6 +260,7 @@ ref2 = 1020;		// ERROR. ref2 is a 'refernce to const'. still "i = 2491"
 * We can define **pointers** that point to either `const` or non-`const`.
 * A **pointer to `const`** may not be used to change the object to which it points.
 * We may store the address of a `const` object only in a **pointer to `const`**.
+* Dereferncing a pointer gives the object to which the pointer points.
 
 ```c++
 const double pi = 3.14;		// OK. pi is a const double; its value can't be changed
@@ -393,8 +394,34 @@ auto &m = ci, *p = &ci		// OK: m is a "const int", p is a pointer to a "const in
 auto &n = i, *p2 = &ci;		// ERROR: type deduced from 'i' is 'int', but type deduced from '&ci' is 'const int'
 ```
 
+* **`decltype`**:
+	* `decltype` is the _only_ context in which the variable defined as `reference` is not treated as a synonym for the object to which it refers.
+	* The compiler analyzes the expression to determine the type but doesnot evaluate the expression.
+	* If `r` is a refernce then `decltype(r)` is a refernce type too.
+	* `dereference operator(*)` is an example of an expression for which `decltype` returns a `reference`.
+	* Enclosing the name of the variable in a paranthesis affects the type returned by `decltype`.
+	* When we apply the `decltype` to a variable without any paranthesis, we get the type of the variable. 
+	* If we wrap the variable's name in one or more paranthesis, the compiler will evaluate the operand as an expression.
+	A variable is an expression if it can be the left-hand side of an assignment.
+	Hence, in such cases `decltype` returs a `reference`.
+	* **`decltype` of a paranthesized variable is always a reference**.
 
+```c++
+decltype(f()) sum = a;		// sum has a type that is returned by f()
 
+const int ci = 0, &cj = ci;
+decltype(ci) x = 0;		// OK: x has type "const int"
+decltype(cj) y = x;		// OK: y is refernce of type "const int&" and is bound to x (a "const int")
+decltype(cj) z;			// ERROR: z is a refernce of type "const int&" and all refernces must be initialized
+
+// decltype of a paranthesized variable is always a refernce
+decltype((i)) d;		// ERROR: d has a type "int&" and hence must be initialized
+decltype(i) e;			// OK: e is an (uninitialized) "int"
+```
+```c++
+decltype((variable)) --------> reference (always)
+decltype(variable) ----------> reference only if "variable is a reference"
+```
 
 
 
