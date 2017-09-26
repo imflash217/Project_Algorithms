@@ -386,7 +386,7 @@ const char *cstr = 0;		// ERROR: wrong interpretation of "const pastring cstr = 
 * When we define several variables in the same statement, it's important to remeber that `reference` or `pointer` is part of a particular declarator not part of the base type of declaration.
 
 ```c++
-int i = 0;		
+int i = 0;
 const int ci =i;		// OK: ci has "top-level const"
 auto k = ci, &l = i;		// OK: k is a "int" (top-level const are ignored while copying in auto), l is "int&"
 auto &m = ci, *p = &ci		// OK: m is a "const int", p is a pointer to a "const int"
@@ -423,9 +423,27 @@ decltype((variable)) --------> reference (always)
 decltype(variable) ----------> reference only if "variable is a reference"
 ```
 
+* We can define a class inside a function but such classes have limited functionalities, hence classes are ordinarily not defined inside functions.
 
+* There can be only one definition of **class** in any given source file.
+* If we use a class in several different files, the class' definition must be the same.
+* In order to make sure that the class definition is same in each file, classes are usually defined in **`header files`**.
+* Typically classes are stored in headers whose name derives from the name of the class (like, `string` class is defined in `string.h` header file......etc)
+* Whenever a header is updated, the source files that use the headers must be recompiled to get the new or changed declarations.
 
+* The **Preprocessor** is a program that runs before the Compiler & changes the source text of our program.
+* **Preprocessor variables** are used to guard against multiple inclusions.
+* The **`#define`** directive takes a nake and define that as a **preprocessor** variable.
+* The preporcessor variables can have states: **`defined`** or **`not defined`**.
+	* **`#ifdef`** is `true` if the preprocessor variable is defined.
+	* **`#ifndef`** is `true` if the preprocessor variable is not defined.
+	If the test is true then everything following `#ifdef` or `#ifndef` is processed upto the matching `#endif`
+* Preprocessor variables DO NOT respect C++ scoping rules.
+* Preprocessor variables are usually written in all UPPERCASE to avoid name clashes with other variables in the header file.
 
+----------------------------------------------------------------------------------------------
+
+#### **`STRINGS, VECTORS & ARRAYS`**
 
 
 
