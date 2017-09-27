@@ -466,13 +466,13 @@ string s4(17, 's');		// direct initialization; s4 is sssssssssssssssss
 
 ```c++
 string s0 = "potter ";
-string s5 = s0 + "! ";		// OK:
-string s6 = "Rustom" + "! ";	// ERROR: Can't add two string-literals ("Rustom" + "! ")
+string s5 = s0 + "! ";			// OK:
+string s6 = "Rustom" + "! ";		// ERROR: Can't add two string-literals ("Rustom" + "! ")
 string s7 = s0 + "Rustom" + "! ";	// OK: (s0 + "Rustom") returns a string type
 string s8 = "Rustom" + " " + s0;	// ERROR: Can't add two string-literals ("Rustom" + " ")
 ```
 
-
+*
 
 
 
