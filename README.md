@@ -472,12 +472,31 @@ string s7 = s0 + "Rustom" + "! ";	// OK: (s0 + "Rustom") returns a string type
 string s8 = "Rustom" + " " + s0;	// ERROR: Can't add two string-literals ("Rustom" + " ")
 ```
 
-*
+* The C++ library incorporates the C library.
+	* Headers in C have names of the form `name.h`.
+	The C++ version of these headers are named `cname` (replacing the `.h` and putting a prefix `c` before the `name`)
+	* The names defined in `cname` headers are defined in `std` namespace whereas those define din `.h` versions are not
 
+* **range `for` statement`** : 
+```c++
+for (declaration : expression) statement;
+```
+```c++
+string m_str("Rustom Potter");
 
+// range for statement to print each character in a string
+for (auto m_char : m_str) 
+	cout << m_char << endl;
+```
+```c++
+cctype functions:
 
-
-
+isalnum()		isalpha()		iscntrl()		isdigit()
+isgraph()		islower()		ispunct()		isprint()
+isspace()		isupper()		isxdigit()
+tolower()		toupper()
+```
+* If we want to change the characters in a `string`, we must define the loop variables as a `reference type`
 
 
 
