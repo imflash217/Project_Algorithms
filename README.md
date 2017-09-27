@@ -445,6 +445,10 @@ decltype(variable) ----------> reference only if "variable is a reference"
 
 #### **`STRINGS, VECTORS & ARRAYS`**
 
+* **`string`** : A variable-length sequence of characters.
+* **`vector`** :  It holds the variable-length sequence of objects of any given type.
+* **`scope-operator (::)`** It says that the Compiler should look in the scope of the left-hand operand for the name on the right-hand operand.
+* 
 
 
 
