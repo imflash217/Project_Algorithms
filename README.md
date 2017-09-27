@@ -448,7 +448,31 @@ decltype(variable) ----------> reference only if "variable is a reference"
 * **`string`** : A variable-length sequence of characters.
 * **`vector`** :  It holds the variable-length sequence of objects of any given type.
 * **`scope-operator (::)`** It says that the Compiler should look in the scope of the left-hand operand for the name on the right-hand operand.
-* 
+* Headers should not use `using` declarations. If a header has a `using` declaration then, every program that #include that header file will get the same `using` declaration. As a result, a program that did not intend to use a specified library name might encounter name conflicts.
+
+```c++
+string s1;			// default initialization, s1 is an empty string
+string s2 = s1;			// copy initialization; s2 is a copy of s1
+string s3 = "rustom potter";	// copy initialization; s3 is a copy of the string literal, not including the null '\0'
+string s4(17, 's');		// direct initialization; s4 is sssssssssssssssss
+```
+* Like the input and output operations of built-in types, the string operator returns their left-hand operand as their result.
+
+* Comparision rules for `string`:
+	* **Rule 1** : If two `string`s (`s1, s2`) have different lengths and if every character in the shorter `string (s1)` is equal to the corresponding characters in the longer `string (s2)` then `s1 is less than s2`.
+	* **Rule 2** : If any character at corresponding positions in the two strings (`s1, s2`) differs, then the result of string comparision is the result of **comparing the first characters at which the strings (`s1 & s2`) differ**.
+
+* When we add `string` and `character/string literal`, atleast one operand to each **`+`** operator must be `string` type.
+
+```c++
+string s0 = "potter ";
+string s5 = s0 + "! ";		// OK:
+string s6 = "Rustom" + "! ";	// ERROR: Can't add two string-literals ("Rustom" + "! ")
+string s7 = s0 + "Rustom" + "! ";	// OK: (s0 + "Rustom") returns a string type
+string s8 = "Rustom" + " " + s0;	// ERROR: Can't add two string-literals ("Rustom" + " ")
+```
+
+
 
 
 
