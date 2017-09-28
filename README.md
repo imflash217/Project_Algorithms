@@ -498,9 +498,32 @@ tolower()		toupper()
 ```
 * If we want to change the characters in a `string`, we must define the loop variables as a `reference type`
 
+* The important part about **`&&` operator** is that it evalates the right-hand operand ONLY if the left-hand operand is `true`.
+* **Templates** are not themselves classes or functions. Instead they can be thought of as instructions to the Compiler for generating classes or functions.
+* `instantiation` : The process that the Compiler uses to create classes or functions from **templates**.
+* When we use a template, we specify what kind of class or functions we want the Compiler to instantiate.
+* A `vector` is a **class template.** not a `type`.
+* `vector` can hold objects of any type. 
+* Because, `references` are not `object`, we can't have `vector` of **references**.
+* We can add elements to `vector` @runtime.
+* Most common way of using `vector` is to initially define an empty `vector` and then all elements @runtime
+
+```c++
+// In this example, the compiler generates 4 different types of vector templates 
+// vector<int>, vector<string>, vector<Sales_item>, vector<vector<int>>
+
+vector<int> ivec;		// vector of int; initially empty
+vector<string> svec;		// vector of string
+vector<Sales_item> Sales_vec;	// vector of Sales_item
+vector<vector<int>> file;	// vector whose elements are vectors of int
+
+//----------------------------------------------
+vector<int> ivec2(ivec);	// OK: copy elements of 'ivec' into 'ivec2'
+vector<int> ivec3 = ivec;	// OK: copy elements of 'ivec' into 'ivec3'
+vector<string>svec3 = ivec;	// ERROR: svec3 holds string, ivec holds int
 
 
-
+```
 
 
 
