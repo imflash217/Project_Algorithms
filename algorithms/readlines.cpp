@@ -23,8 +23,45 @@ int main(){
 	getline(cin, m_line);
 	cout << m_line << endl;
 	
+	//----------------------------------------------------------------------------
+	const string hexdigits = "0123456789ABCDEF";
+	string result;						// holds the hexif'ed string
+	string::size_type n;				// Holds the numbers from input
+	
+	cout << "Enter a series of numbers b/w 0 and 15"
+		 << "separated by SPACES. Hit ENTER when done: "
+		 << endl;
+	while (cin >> n){					// checks if the input is empty or reached EOF
+		if(n < hexdigits.size()){		// checks if the entered integer is in the range [0,15]
+			result += hexdigits[n];		// fetches the n'th value from hexdigits string 
+		}
+	}
+	
+	cout << result << endl;	
+
 	return 0;						// SUCCESS
 		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
