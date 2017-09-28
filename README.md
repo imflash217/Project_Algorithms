@@ -477,10 +477,12 @@ string s8 = "Rustom" + " " + s0;	// ERROR: Can't add two string-literals ("Rusto
 	The C++ version of these headers are named `cname` (replacing the `.h` and putting a prefix `c` before the `name`)
 	* The names defined in `cname` headers are defined in `std` namespace whereas those define din `.h` versions are not
 
-* **range `for` statement`** : 
+* **range `for` statement** : 
 ```c++
 for (declaration : expression) statement;
 ```
+* The body of **range `for`** must not change the size of the sequence over which it is iterating.
+
 ```c++
 string m_str("Rustom Potter");
 
@@ -524,7 +526,28 @@ vector<string>svec3 = ivec;	// ERROR: svec3 holds string, ivec holds int
 
 
 ```
+* **`push_back`** : It takes a value and "pushes" that value as a new element onto the **back** of the `vector`.
 
+```c++
+vector<int> m_vec;		// empty vector
+for (int i = 0; i<100; ++i){
+	m_vec.push_back(i);	// append sequential ints to vector m_vec
+}
+// at the end of the for-loop, m_vec will have int from 0 to 99
+
+//-----------------------------------------
+// read string from the input stream and store them in a vector
+string m_str;			// empty string
+vector<string> m_strVec;	// empty string vector
+while(cin >> m_str){
+	m_strVec.push_back(m_str);	// stores each string into the string-vector
+}
+```
+* We can't use **range `for`**, if the body of the loop adds elements to the `vector`.
+* It's an error to subscript (`[]`) an element that does not exist; but it is an error that the Compiler is **unlikely to detect**. Instead, the value we get @runtime is undefined.
+
+* **_Buffer overflow_** errors are the result of subscripting elements that don't exist.
+* A good way to ensure that subscripts are in range is to avoid subscripting altogether by using a **range `for`** statement whenever possible.
 
 
 
