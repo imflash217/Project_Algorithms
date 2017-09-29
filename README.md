@@ -650,7 +650,7 @@ int a3[5] = {0,1,2};			// OK: same as a3[] = {0, 1, 2, 0, 0}
 string a4[3] = {"Rustom", "Potter"};	// OK: same as a4[] = {"Rustom", "Potter", ""}
 int a5[2] = {0,1,2};			// ERROR: too many initializers
 ```
-* :beginner: REMEMBER: `string` literals end with a null-character (`\0`).
+* REMEMBER: `string` literals end with a null-character (`\0`).
 
 ```c++
 char a1[] = {'P', 'o', 't', 't', 'e', 'r'};		// Dimension = 6
@@ -660,14 +660,48 @@ char a3[] = "Potter";					// Dimesnion = 7 (null-character in string-literal is 
 const char a4[6] = "Potter";				// ERROR: too many initializers (no room for including null-character in the string-literal)
 ```
 
-* :warning: We cannot assign an `array` to another `array`.
-* :vertical_traffic_light: We cannot use an `array` to initialize another `array`.
+* We cannot assign an `array` to another `array`.
+* We cannot use an `array` to initialize another `array`.
 
 ```c++
 int a[] = {1,2,3};		// OK:
 int a1[] = a;			// ERROR: can't use another array to initialize an array
 a1 = a;				// ERROR: can't assign an array to another array.
 ```
+
+* By default, type modifiers bind from right to left.
+* In case of arrays, it can be easy to read array declarations from the **inside out** rather than **right to left**
+
+```c++
+int *parray[10];			// OK: parray is an array of 10 pointers-to-int
+int &rarray[10] = /* ? */;		// ERROR: reference is not an object & arrays can hold only objects
+
+int (*Parray)[10] = &arr;		//OK: Parray "points" to an array of 10 ints; Parray is a pointer
+int (&Rarray)[10] = arra;		//OK: Rarray "refers" to an array of 10 ints; Rarray is a reference
+
+int *(&m_array)[10] = ptrs;		//OK: m_array is a refernce to an array of 10 pointers-to-int; m_array is a refernce
+int &(*m_array2)[10] = /* ? */;		//ERROR: arrays cannot hold refernces (b'coz references are not objects)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
