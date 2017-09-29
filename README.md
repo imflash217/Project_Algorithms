@@ -549,7 +549,27 @@ while(cin >> m_str){
 * **_Buffer overflow_** errors are the result of subscripting elements that don't exist.
 * A good way to ensure that subscripts are in range is to avoid subscripting altogether by using a **range `for`** statement whenever possible.
 
+* A valid `iterator` either denotes an element or denotes a position one past the last element in the container. All other iterator values are invalid.
 
+* We can dereference a valid iterator to obtain the element denoted by the iterator. 
+* Dereferencing an invalid iterator or and **off-the-end iterator** has undefined behaviour.
+
+```c++
+// Standard Container Iterator operations:
+
+*iter		---------------		Returns a reference to the element returned by the iterator "iter"
+
+iter->mem	---------------		Derefernces "iter" and fetches the member named "mem" from the 
+		---------------		underlying element. equvalent to (*iter).mem
+
+++iter		---------------		Increments "iter" to refer to the next element in the container
+--iter		---------------		Decrements "iter" to refer to the previous element in the container
+
+iter1 == iter2	---------------		Compares two iterators for equality.
+iter1 != iter2	---------------		Compares two iterators for inequality.
+					Two iterators are equal if they denote the same element or if they
+					are the off-the-end iterator for the same container
+```
 
 
 
