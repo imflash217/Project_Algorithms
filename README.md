@@ -650,7 +650,7 @@ int a3[5] = {0,1,2};			// OK: same as a3[] = {0, 1, 2, 0, 0}
 string a4[3] = {"Rustom", "Potter"};	// OK: same as a4[] = {"Rustom", "Potter", ""}
 int a5[2] = {0,1,2};			// ERROR: too many initializers
 ```
-* :zap: REMEMBER: `string` literals end with a null-character (`\0`).
+* :beginner: REMEMBER: `string` literals end with a null-character (`\0`).
 
 ```c++
 char a1[] = {'P', 'o', 't', 't', 'e', 'r'};		// Dimension = 6
