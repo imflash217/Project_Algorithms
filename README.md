@@ -560,7 +560,7 @@ while(cin >> m_str){
 *iter		---------------		Returns a reference to the element returned by the iterator "iter"
 
 iter->mem	---------------		Derefernces "iter" and fetches the member named "mem" from the 
-		---------------		underlying element. equvalent to (*iter).mem
+					underlying element. equvalent to (*iter).mem
 
 ++iter		---------------		Increments "iter" to refer to the next element in the container
 --iter		---------------		Decrements "iter" to refer to the previous element in the container
@@ -571,11 +571,62 @@ iter1 != iter2	---------------		Compares two iterators for inequality.
 					are the off-the-end iterator for the same container
 ```
 
+* The library types that have iterators, define types named `iterator`  and `const_iterator` that represent actual iterator types:
+```c++
+vector<int>::iterator iter1;		// iter1 can read & write vector<int> elements
+string::iterator iter2;			// iter2 can read & write characters in a string
 
+vector<int>::const_iterator iter3;	// iter3 can ONLY read vector<int> elements
+string::const_iterator iter4;		// iter4 can ONLY read characters in a string
+```
 
+* A **`const_iterator`** behaves like a `const` pointer. It can read but can't write the element it denotes.
+* If a `vector` or `string` is `const`; we can use only its `const_iterator` type.
+* Each _container class_ defines a type named `iterator`; that `iterator` type supports the actions of a (conceptual) iterator.
 
+* The type returned by `begin` or `end` depends on whether the `object` on which they operate is `const` or not. If the object is `const` then `begin` and `end` returns `const_iterator`; if they are not `const` then they return `iterator`.
 
+* **`cbegin()` and `cend()`** : regardless of whether the `vector`(or string) is `const` or not; they always return `const_iterator` type.
 
+```c++
+vector<int> v;
+const vector<int> cv;
+auto iter1 = v.begin();		// iter1 has type vector<int>::iterator
+auto iter2 = cv.begin();	// iter2 has type vector<int>::const_iterator
+
+auto iter3 = v.cbegin();	// iter3 has type vector<int>::const_iterator
+```
+* When we derefernce a `iterator`, we get the object that the `iterator` denotes.
+```c++
+vector<string> m_sVec;
+
+//.....some initialization of m_sVec
+//.....
+// iter is a iteration into vector<string> m_sVec
+
+auto iter = m_sVec.begin();
+
+// derefernce and member access
+(*iter).empty();	// OK: dereferences iter and calls the empty() member on the resulting object
+*iter.empty();		// ERROR: attempts to fetch the member named empty on the resulting object
+			// 	but iter is an iterator and has no member named empty
+```
+
+* **`->` operator**: The `->` (arrow) operator combines **dereference** and **member-access** into single operation.
+	* **`iter->mem`** is equivalent to **`(*iter).mem`**
+
+```c++
+// Arrow operator (->) is equivalent to 'dereference & member-access'
+
+iter->empty();		// OK: the ARROW-operator
+(*iter).empty();	// OK: derefernce and member access
+```
+
+* **`vector` operations that invalidate iterators**:B'coz `vector`s can grow dinamically:
+	* we cannot add elements to `vector` inside a **range `for`** loop.
+	* any operation (like `push_back()` that changes size of a vector potentially invalidates all iterators into that `vector`.
+	
+* So, loops that use iterators should not add elements to the container to which the iterator refers.
 
 
 
