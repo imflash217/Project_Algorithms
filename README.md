@@ -628,8 +628,46 @@ iter->empty();		// OK: the ARROW-operator
 	
 * So, loops that use iterators should not add elements to the container to which the iterator refers.
 
+* As with `vector`s, **`array`** holds `object`. There are no **arrays** of references.
+* When we define an `array` we must specify a type for the array. We **can't** use `auto` to deduce the type from the list of initializers.
 
+* The dimension of the array must be known at Compile time i.e dimension must be a **constant expression**.
 
+```c++
+unsigned int cnt = 17;
+string bad_Array[cnt];		// ERROR: "cnt" is not a constant expression
+
+constexpr unsigned sz = 217;	// constant expression
+string good_Array[sz];		// OK: "sz" is a constant expression i.e its value will be same all the time
+string m_array[get_size()];	// OK if get_size() is a constant expression; ERROR otherwise
+```
+* When we **list-initialize** an array, we **can** omit the dimension
+```c++
+const unsigned sz = 3;
+int ia1[sz] = {0,1,2};			// OK: an array of 3 ints with elements {0,1,2}
+int a2[] = {0,1,2};			// OK: an array of dimension 3 with elements {0, 1,2}
+int a3[5] = {0,1,2};			// OK: same as a3[] = {0, 1, 2, 0, 0}
+string a4[3] = {"Rustom", "Potter"};	// OK: same as a4[] = {"Rustom", "Potter", ""}
+int a5[2] = {0,1,2};			// ERROR: too many initializers
+```
+* REMEMBER: `string` literals end with a null-character (`\0`).
+
+```c++
+char a1[] = {'P', 'o', 't', 't', 'e', 'r'};		// Dimension = 6
+char a2[] = {'P', 'o', 't', 't', 'e', 'r', '\0'};	// Dimension = 7 (explicit null-character)
+char a3[] = "Potter";					// Dimesnion = 7 (null-character in string-literal is copied)
+
+const char a4[6] = "Potter";				// ERROR: too many initializers (no room for including null-character in the string-literal)
+```
+
+* :warning: We cannot assign an `array` to another `array`.
+* We cannot use an `array` to initialize another `array`.
+
+```c++
+int a[] = {1,2,3};		// OK:
+int a1[] = a;			// ERROR: can't use another array to initialize an array
+a1 = a;				// ERROR: can't assign an array to another array.
+```
 
 
 
