@@ -661,7 +661,7 @@ const char a4[6] = "Potter";				// ERROR: too many initializers (no room for inc
 ```
 
 * :warning: We cannot assign an `array` to another `array`.
-* We cannot use an `array` to initialize another `array`.
+:warning: * We cannot use an `array` to initialize another `array`.
 
 ```c++
 int a[] = {1,2,3};		// OK:
