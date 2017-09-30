@@ -684,7 +684,8 @@ int &(*m_array2)[10] = /* ? */;		//ERROR: arrays cannot hold refernces (b'coz re
 
 ```
 * When we use a variable to subscript an array, we normally should define that variable to have **`size_t`** type.
-* **`size_t`** is a machine-specific `unsigned type` that is guaranteed to be large enough to hold the size of any object in memory.
+* **`size_t`** is a machine-specific `unsigned type` that is guaranteed to be large enough to hold the size of any object in memory. 
+* `size_t` is defined in `cstddef` C++ header. Use `#include <cstddef>` statement.
 
 * In C++, when we use an `array`, the Compiler ordinarily converts the array to a pointer.
 * When we use an `object` of array type, we are really using a `pointer` to the first element of the array.
@@ -706,7 +707,17 @@ ia3[2] = 217;				// OK: assigns 217 to the ia3[2] position
 
 ```
 
-* 
+* Pointers to `array` elements support the same operations as **iterators** on `vector` or `string`.
+* As with `iterators`, subtracting two pointers give us the distance b/w two pointers; but the pointers must point to the elements in the same array:
+
+```c++
+auto n = end(arr) - begin(arr);		//OK:
+auto m = end(arr) - begin(arr2);	//ERROR if arr, arr2 are not same; can't subtract pointers from two different array
+```
+
+* The result of subtracting two pointers is a library type named **`ptrdiff_t`**.
+* `ptrdiff_t` is a `signed intergral type` and is machine-specific.
+
 
 
 
