@@ -717,7 +717,7 @@ auto m = end(arr) - begin(arr2);	//ERROR if arr, arr2 are not same; can't subtra
 
 * The result of subtracting two pointers is a library type named **`ptrdiff_t`**.
 * `ptrdiff_t` is a `signed intergral type` and is machine-specific.
-
+* Unlike subscripts for `vector` and `string`, the index of the built-in subscript operator is not an `unsigned` type.
 
 
 
