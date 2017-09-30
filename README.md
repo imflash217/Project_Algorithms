@@ -683,9 +683,30 @@ int *(&m_array)[10] = ptrs;		//OK: m_array is a refernce to an array of 10 point
 int &(*m_array2)[10] = /* ? */;		//ERROR: arrays cannot hold refernces (b'coz references are not objects)
 
 ```
+* When we use a variable to subscript an array, we normally should define that variable to have **`size_t`** type.
+* **`size_t`** is a machine-specific `unsigned type` that is guaranteed to be large enough to hold the size of any object in memory.
 
+* In C++, when we use an `array`, the Compiler ordinarily converts the array to a pointer.
+* When we use an `object` of array type, we are really using a `pointer` to the first element of the array.
+* **operations on `array` are actually operations on `pointer`**.
+* When we use an `array` as an initializer for a variable defined using **`auto`**, the deduced type is a `pointer` not an `array`. But, if we use `decltype` then this issue doesn't arrise.
 
+```c++
+int ia[] = {0,1,2,3,4,5,6,7,8,9};	// ia is an array of ints
+auto ia2(ia);				// ia2 has type int* (a pointer to ia[0] element)
+					// same as: auto ia2(&ia[0]);
 
+ia2 = 217;				// ERROR: can't assign an int to a pointer
+
+//---------------------
+int *ptr;				// a pointer
+decltype(ia) ia3 = {11, 12, 17, 223};	// ia3 is an array
+ia3 = p;				// ERROR: can't assign a pointer to an array
+ia3[2] = 217;				// OK: assigns 217 to the ia3[2] position
+
+```
+
+* 
 
 
 
