@@ -63,8 +63,14 @@ int main(){
 	}
 	
 	//----------------------------------------------------------------------------
+	// using pointers, write a program to set the elements in an array to 0
+	for(int *ptr = begin(m_array); ptr != end(m_array); ++ptr){
+		*ptr = 0;
+		cout << *ptr << " ";
+	}
+	cout << endl;
 	
-	
+	//----------------------------------------------------------------------------
 	return 0;						// SUCCESS	
 }
 
