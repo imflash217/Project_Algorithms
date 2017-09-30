@@ -8,8 +8,12 @@
 using std::cin;
 using std::cout;
 using std::endl;
+
 using std::string;
 using std::vector;
+
+using std::begin;
+using std::end;
 
 int main(){
 
@@ -46,6 +50,20 @@ int main(){
 	cout << result << endl;	
 	
 	//----------------------------------------------------------------------------
+	//  pointers as iterators
+	// finding the 1st -ve eleemnt in an array of int
+	
+	int m_array[10] = {61, 32, 0, 98, -19, -53, 90};
+	int *ptr_beg = begin(m_array);
+	int *ptr_end = end(m_array);
+	
+	while(ptr_beg != ptr_end && *ptr_beg >= 0){
+		++ptr_beg;
+		cout << *ptr_beg << endl;
+	}
+	
+	//----------------------------------------------------------------------------
+	
 	
 	return 0;						// SUCCESS	
 }
