@@ -71,6 +71,48 @@ int main(){
 	cout << endl;
 	
 	//----------------------------------------------------------------------------
+	// Comparing two arrays and two vectors
+	
+	cout << "Comparing two arrays and two vetors respectively!!" << endl;
+	
+	int m_array1[6] = {1, 2, 3, 4, 5, 6};
+	int m_array2[6] = {1, 3, 4, 5, 6, 7};
+	vector<int> m_vec1{1, 2, 3, 4, 5, 6, 7, 8};
+	vector<int> m_vec2{1, 2, 14, 15, 16, 17, 17, 19};
+	
+	int *begA1 = begin(m_array1);
+	int *endA1 = end(m_array1);
+	int *begA2 = begin(m_array2);
+	int *endA2 = end(m_array2);
+	auto begV1 = m_vec1.begin();
+	auto endV1 = m_vec1.end();
+	auto begV2 = m_vec2.begin();
+	auto endV2 = m_vec2.end();
+	
+	if((endA1-begA1) == (endA2-begA2)){				// checking if the arrays are of same size
+		while(begA1 != endA1 && *begA1 == *begA2){
+			cout << "Arrays: " << *begA1 << " = " << *begA2 << endl;
+			++begA1;
+			++begA2;
+		cout << "Arrays were of equal size and the results of their equality are above." << endl;			
+		}
+	}else{
+		cout << "The two Arrays are NOT of same size!!" << endl;
+	}
+	
+	if((endV1-begV1) == (endV2-begV2)){				// checking if the vectors are of same size
+		while(begV1 != endV1 && *begV1 == *begV2){
+			cout << "Vectors: " << *begV1 << " = " << *begV2 << endl;
+			++begV1;
+			++begV2;
+		}
+		cout << "Vectors were of equal size and the results of their equality are above." << endl;
+	}else{
+		cout << "The two Vectors are NOT of same size!!" << endl;
+	}
+	
+	
+	//----------------------------------------------------------------------------
 	return 0;						// SUCCESS	
 }
 
