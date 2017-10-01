@@ -53,7 +53,7 @@ int main(){
 	//  pointers as iterators
 	// finding the 1st -ve eleemnt in an array of int
 	
-	int m_array[10] = {61, 32, 0, 98, -19, -53, 90};
+	int m_array[] = {61, 32, 0, 98, -19, -53, 90};			// when we list initialize an array, we can omit the dimension
 	int *ptr_beg = begin(m_array);
 	int *ptr_end = end(m_array);
 	
@@ -75,8 +75,8 @@ int main(){
 	
 	cout << "Comparing two arrays and two vetors respectively!!" << endl;
 	
-	int m_array1[6] = {1, 2, 3, 4, 5, 6};
-	int m_array2[6] = {1, 3, 4, 5, 6, 7};
+	int m_array1[] = {1, 2, 3, 4, 5, 6};					// when we list initialize an array, we can omit the dimension
+	int m_array2[] = {1, 3, 4, 5, 6, 7};
 	vector<int> m_vec1{1, 2, 3, 4, 5, 6, 7, 8};
 	vector<int> m_vec2{1, 2, 14, 15, 16, 17, 17, 19};
 	
@@ -111,6 +111,41 @@ int main(){
 		cout << "The two Vectors are NOT of same size!!" << endl;
 	}
 	
+	//----------------------------------------------------------------------------
+	const char carray[] = {'r', 'u', 's', 't', 'o', 'm'};		// when we list initialize an array, we can omit the dimension
+	const char *cptr = carray;
+	while(*cptr){
+		cout << *cptr << endl;
+		++cptr;	
+	}
+	
+	//----------------------------------------------------------------------------
+	// Initialize a vector from an array of ints
+	const int m_array3[] = {1, 21, 32, 76, 49, 0, -1, 390, -132};
+	vector<int> m_vec3(begin(m_array3), end(m_array3));
+	
+	for(auto m_iter3 : m_vec3){						// using range for statement
+		cout << m_iter3 << ", ";
+		++m_iter3;
+	}
+	cout << endl;
+	
+	// copy a vector of ints into an array of ints
+	// const auto m_size_vec3 = (m_vec3.end() - m_vec3.begin());			// can't be used to define the size of the array.
+	const int m_size = 9;
+	int m_array4[m_size];
+	
+	int *endA4 = end(m_array4);		// pointer to the off-the-end of array
+	auto m_begV3 = m_vec3.begin();
+	auto m_endV3 = m_vec3.end();
+	
+	
+	for(int *ptr = begin(m_array4); ptr != endA4; ++ptr){
+		*ptr = *m_begV3;
+		++m_begV3;
+		cout << *ptr << ". ";
+	}
+	cout << endl;
 	
 	//----------------------------------------------------------------------------
 	return 0;						// SUCCESS	
