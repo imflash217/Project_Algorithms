@@ -719,11 +719,25 @@ auto m = end(arr) - begin(arr2);	//ERROR if arr, arr2 are not same; can't subtra
 * `ptrdiff_t` is a `signed intergral type` and is machine-specific.
 * Unlike subscripts for `vector` and `string`, the index of the built-in subscript operator is not an `unsigned` type.
 
+* We can't initialize an `array` from another `array`.
+* We can't initialize an `array` from a `vector`.
+* But, we can initialize a `vector` from an `array`.
 
+```c++
+int int_array[] = {0, 1, 2, 3, 4, 5};
 
+vector<int> ivec(begin(int_array), end(int_array));	// ivec has same elements as int_array
 
+vector<int> subVec(begin(int_array) + 1, begin(int_array)+4);	// copies int_array[1], int_array[2], int_array[3]
 
+```
 
+* ADVICE: Use library types instead of arrays. Modern C++ program should use `vector`, `string` and `iterators` instead of built-in `array`s and `pointer`s
+
+* **`Multidimensional Arrays`**:
+	* Strictly speaking, there are no multidimensional arrays in C++.
+	* Commonly, **multidimensional array = (array of arrays)**.
+	* 
 
 
 
