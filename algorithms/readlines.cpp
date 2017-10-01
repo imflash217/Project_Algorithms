@@ -148,6 +148,29 @@ int main(){
 	cout << endl;
 	
 	//----------------------------------------------------------------------------
+	// multidimensional arrays
+	int m_multiArray[2][3] = {
+		{1, 2, 3},
+		{11, 12, 13}
+	};
+	
+	//range for 
+	for(auto ptrA = m_multiArray; ptrA != m_multiArray + 2; ++ptrA){
+		for(auto ptrB = *ptrA; ptrB != *ptrA + 3; ++ptrB){
+			cout << *ptrB << ", ";
+		}
+		cout << endl;
+	}
+	
+	for(auto ptrC = begin(m_multiArray); ptrC != end(m_multiArray); ++ptrC){
+		for(auto ptrD = begin(*ptrC); ptrD != end(*ptrC); ++ptrD){
+			cout << *ptrD <<", ";
+		}
+		cout << endl;
+	}
+	
+	
+	//----------------------------------------------------------------------------
 	return 0;						// SUCCESS	
 }
 
