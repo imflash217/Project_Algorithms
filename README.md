@@ -737,7 +737,20 @@ vector<int> subVec(begin(int_array) + 1, begin(int_array)+4);	// copies int_arra
 * **`Multidimensional Arrays`**:
 	* Strictly speaking, there are no multidimensional arrays in C++.
 	* Commonly, **multidimensional array = (array of arrays)**.
-	* 
+
+--------------------------------------------------------------------------
+
+* **`lvalue`, `rvalue`** : 
+	* `lvalue` could stand on the left-hand side of the operand while `rvalue` could not.
+	* In C++, an `lvalue` expressions yields an `object` or a `function`.
+* When we use an object as:
+	* `lvalue` : we use object's **identity** (its location in memory).
+	* `rvalue` : we use object's **value** (its contents).
+* We can use an `lvalue` when an `rvalue` is required.
+* But we cannot use a `rvalue` when an `lvalue` (i.e a location) is required.
+* For operators that donot specify evaluation order, its an `ERROR` for an expression to **_refer to and change the same object_**.
+*
+
 
 
 
