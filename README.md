@@ -748,8 +748,50 @@ vector<int> subVec(begin(int_array) + 1, begin(int_array)+4);	// copies int_arra
 	* `rvalue` : we use object's **value** (its contents).
 * We can use an `lvalue` when an `rvalue` is required.
 * But we cannot use a `rvalue` when an `lvalue` (i.e a location) is required.
+
+* **Precedence & Associativity**:
+	* Operands of operators with higher **precedence** group more tighly.
+	* **Associativity** guarantees how to group operands with same _precedence_.
+
+* The `arithmetic operators` are left-associative i.e. _operators at same precedence group left-to-right_.
+
+
+* Precedence specifies how the operands are grouped, it says nothing about the **order** in which the operands are evaluated. In most cases, the orderis largely undefined.
+* The order of operand evaluation is determined by the Compiler to avoid pitfalls in programs.
+
+```C++
+int A = f1() * f2();
+
+// We know that f1() and f2() are called before the multiplication is carried.
+// But we don't know whether f1() is called first or f2(). The behaviour of calling is undefined.
+```
+
 * For operators that donot specify evaluation order, its an `ERROR` for an expression to **_refer to and change the same object_**.
-*
+```C++
+int i = 0;
+cout << i << ", " << ++cout << endl;		// ERROR: UNDEFINED behaviour
+
+// B'coz the Compiler might evaluate ++i befor i or otherwise. 
+// B'coz this code has undefine behaviour the program is an error irrespective of what the compiler compiles
+```
+
+* `Operators` that guarantee the order in which the operands are evaluated:
+	* **logical AND-operator (`&&`)** : left-operand is evaluated first. right-operand is evaluated only if left-operand is `true`
+	* **logical OR-operator (`||`)**
+	* **conditional-operator (`? :`)**
+	* **comma-operator (`,`)**
+
+* ADVICE: If you change an operand ; don't use the same operand elsewhere in the **same expression**.
+
+* The operands to `modulo-operator (%)` must have **integral** type.
+* Except for when (`-m`) overflows; the following rules holds true always:
+	* `(-m) / n` and `m / (-n)` are both equal to `-(m / n)`
+	* `(-m) % n` is equal to `-(m % n)`
+	* `m % (-n)` is equal to `m % n`
+
+
+
+
 
 
 
