@@ -789,6 +789,46 @@ cout << i << ", " << ++cout << endl;		// ERROR: UNDEFINED behaviour
 	* `(-m) % n` is equal to `-(m % n)`
 	* `m % (-n)` is equal to `m % n`
 
+* **Relational Operators** take operands of `arithmetic` or `pointer` types.
+* **Logical Operators** take operands of any type that can be converted to `bool`.
+
+* The `logical AND (&&)` and `logical OR (||)` operators always evaluate their left-hand operand first. Moreover, the right-hand operand is evaluated iff the left-hand operand does not determine the result. This strategy is called `short-circuit evaluation`.
+
+* **short-circuit evaluation** : 
+	* The right side of `&&` is evaluated only if left side is `true`.
+	* The right side of `||` is evaluated only if left side is `false`.
+	
+* It's a bad idea to use the boolean literals `true` and `false` as operands in a comparision. These literals should be used only to compare to an object of `bool` type.
+
+* The left-hand operand of the `assignment operator ( = )` must be a modifiable `lvalue`.
+* The `assignment operator ( = )` is **right-associative**.
+
+* **Compound assignment** :
+```
++= , -= , *= , /= , %=			// Arithmetic operators
+
+<<= , >>= , &= , ^= , |=		// bitwise operators
+```
+
+* When we use _compund assignment_, the left-hand operand is evaluated only **once**. 
+But, if we use ordinary assignment, the left-hand operand is evaluated **twice** (once in the operation on right-hand side and again as the operand on the left-hand side). Apart from performance issue there is no b ig deal about using either.
+
+* **prefix** (`++i`) 
+	* yields the incremented value
+	* returns the `object` itself as an `lvalue`
+* **postfix** (`i++`) 
+	* yields the original (unincremented) value
+	* returns a copy of the object's original value as an `rvalue`
+
+* The precedence of `postfix increment (i++)` is higher than that of `derefernce` operator.
+* `*ptr++` is equivalent to `*(ptr++)`. This expression first computes `ptr++` and then yields the copy of the **previous** value of `ptr`.
+
+
+
+
+
+
+
 
 
 
