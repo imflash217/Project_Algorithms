@@ -823,9 +823,16 @@ But, if we use ordinary assignment, the left-hand operand is evaluated **twice**
 * The precedence of `postfix increment (i++)` is higher than that of `derefernce` operator.
 * `*ptr++` is equivalent to `*(ptr++)`. This expression first computes `ptr++` and then yields the copy of the **previous** value of `ptr`.
 
+* **Member Access** :
+	* **`dot operator (.)`**
+	* **`arrow operator (->)`**
+	
+* The `arrow operator (->)` requires a **pointer** operand and yields an `lvalue`.
+* The `dot operator (.)` yields an `lvalue` if the object from which the member is fetched is an `lvalue`; otherwise it yields an `rvalue`.
 
-
-
+* **Conditional Operator `(?:)`** : `cond ? expr1 : expr2`
+	* The result of `conditional operator (?:)` is `lvalue` if both operators are `lvalue` or if they can convert to a common `lvalue` type. Otherwise the result is an `rvalue`.
+	
 
 
 
