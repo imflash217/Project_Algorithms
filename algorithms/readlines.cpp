@@ -168,8 +168,30 @@ int main(){
 		}
 		cout << endl;
 	}
-	
-	
+
+	//----------------------------------------------------------------------------
+	vector<string> m_vec5{"Hi", "", "Mr", "Rustom", "Potter.", "My name is Prithviraj."};
+
+	// range for loop
+	for(const auto &str : m_vec5){		// const is used to avoid writing to str; reference is used b'coz we don't need to copy str
+		cout << str;
+
+		// in this if-statement, we reply on short-circuit evaluation of "logical OR (||)" operator to ensure that
+		// we subscript str only if str is not empty
+
+		if (str.empty() || str[str.size() - 1] == '.')		// use '.' instead of "." b'coz C++ forbids comparision b/w pointers and integers
+		{
+			cout << endl;
+		}else{
+			cout << " ";
+		}
+	}
+
+	//----------------------------------------------------------------------------
+
+
+
+
 	//----------------------------------------------------------------------------
 	return 0;						// SUCCESS	
 }
