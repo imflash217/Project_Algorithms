@@ -17,6 +17,28 @@ using std::end;
 
 int main(){
 
+	//----------------------------------------------------------------------------
+	const vector<string> scores = {"F", "D", "C", "B", "A", "A++"};
+	string letterGrade;
+	int grade ;
+	cout << "Grades please: " ;
+	cin >> grade;
+	if(grade < 60){
+		letterGrade = scores[0];
+		cout << letterGrade << endl;
+	}else{
+		letterGrade = scores[(grade-50)/10];
+		if(grade != 100){
+			if(grade % 10 > 7){
+				letterGrade += '+';
+			}else if(grade % 10 < 3){
+				letterGrade += '-';
+			}
+		}
+		cout << letterGrade << endl;
+	}
+	
+
 	// reading per word. Starting and ending whitespaces are ignored
 //	string s1, s2;					// Empty strings
 //	cin >> s1 >> s2;				// reading first two words separated by 'whitespace' character in a single line
@@ -187,7 +209,6 @@ int main(){
 		}
 	}
 
-	//----------------------------------------------------------------------------
 
 
 
