@@ -832,10 +832,59 @@ But, if we use ordinary assignment, the left-hand operand is evaluated **twice**
 
 * **Conditional Operator `(?:)`** : `cond ? expr1 : expr2`
 	* The result of `conditional operator (?:)` is `lvalue` if both operators are `lvalue` or if they can convert to a common `lvalue` type. Otherwise the result is an `rvalue`.
+
+* **`switch` statement** : 
+	* `case labels` must be `integral constant expressions`
+	* ERROR for any two `case labels` to have the same value
+	* `label` may not stand alone; it must precede a statement or another case label
+	* When execution jumps to a particular `case`, any code that occured inside the `switch` before that label is ignored.
+	* 
+
+```c++
+char ch = getVal();
+int ival = 217;
+const int cival = 17;
+const double cdval = 2.17;
+
+switc (ch){
+	case ival :		// ERROR : ival is not a constant expression
+	case 2.1798 : 		// ERROR : non-integer case labels not allowed
+	case cdval :		// ERROR : non-integer case labels not allowed
 	
+	case 2 :		// OK : integer literals are allowed
+	case 'potter' : 	// OK : constant expressions allowed
+	case cival :		// OK : 'const int' allowed
+	
+	// ..........
+	default : 
+}
 
+```
+* Execution flows across `case labels`. After a `case label` is matched, execution starts at that level and continues across all remaining cases **or** untill the program explicitly interrupts it using `break` statement.
 
+* B'coz C++ is free-form; case labels need not appear on a new line.
 
+```c++
+
+switch (ch) {
+	case 'a' : case 'e' : case 'i' : case : 'o' case 'u' :
+		++vowelCount;
+		break;
+}
+
+// same as above code
+
+switch (ch) {
+	case 'a' : 
+	case 'e' :
+	case 'i' :
+	case 'o' : 
+	case 'u' :
+		++vowelCount;
+		break;
+}
+```
+*
 
 
 
