@@ -890,13 +890,51 @@ switch (ch) {
 	* **`for`** : tests _condition_ before execution
 		* _init-statements_ can define several objects. However, _init-statement_ can be only a single declaration statement; so all the variables must have the same base _type_.
 		* Omitting _condition_ is equivalent to writing `true` as a condition.
-		
+	* **range `for` statement** : 
 	* **`do while`** : _executes_ then tests _condition_
+		* _condition_ cannot be empty
+		* Variables used in condition **must** be defined outside the `do while` statement
+
+* **Range `for` statement**:
+	* `expression` must represent a sequence such as : _braced initializer list_, an `array`, or an object of type such as `vector` or `string` that has `begin()` and `end()` members that return `iterators`.
+	* declaration defines a variable. It must be possible to convert each element of the sequence t`variable`'s type. Prefer to use `auto` in such cases.
+	* If we want to write to the elements of the sequence, the loop variable must be a `reference` type.
+	* We cannot use **range `for`** to **add/remove** elements of `vector` (or any other container).
 	
+```c++
+for (declaration : expression){
+	statement;
+}
+```
+```c++
+vector<int> iVec = {1,2,3,4,5,6,7,8,9};
 
+// Range for loop
+for(auto &ref : iVec){
+	ref *= 2;		// multiplying the elements of the vector by 2; need to define the loop-variable as a reference
+}
 
+// Same as ablove code
+for (auto beg = iVec.begin(), end = iVec.end(); beg != end; ++beg){
+	auto &ref = *beg;	// ref must be a reference so we can change the element of iVec
+	ref *= 2;
+}
+```
+* We cannot use **range `for`** to **add/remove** elements of `vector` (or any other container) because in a `range for` the value of `end()` is **cached** and adding/removing elements might invalidate the the `end` value.
 
+```c++
+do {
+	//........
+	mumble(foo);
+} while (int foo = get_foo());		// ERROR : declaration of 'foo'(which is used inside the statement) cannot be done in condition
 
+```
+
+* ** Jump statements** :They interrupt the flow of execution
+	* **`break`**
+	* **`continue`**
+	* **`goto`**
+	
 
 
 
