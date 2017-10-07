@@ -769,9 +769,9 @@ int A = f1() * f2();
 * For operators that donot specify evaluation order, its an `ERROR` for an expression to **_refer to and change the same object_**.
 ```C++
 int i = 0;
-cout << i << ", " << ++cout << endl;		// ERROR: UNDEFINED behaviour
+cout << i << ", " << ++i << endl;		// ERROR: UNDEFINED behaviour
 
-// B'coz the Compiler might evaluate ++i befor i or otherwise. 
+// B'coz the Compiler might evaluate ++i before i or otherwise. 
 // B'coz this code has undefine behaviour the program is an error irrespective of what the compiler compiles
 ```
 
@@ -884,7 +884,79 @@ switch (ch) {
 		break;
 }
 ```
-*
+* **Iterative Statements**:
+	* **`while`** : tests _condition_ before execution
+		* Variables defined in a `while` condition or `while` body are _created and destroyed_ on each iteration.		
+	* **`for`** : tests _condition_ before execution
+		* _init-statements_ can define several objects. However, _init-statement_ can be only a single declaration statement; so all the variables must have the same base _type_.
+		* Omitting _condition_ is equivalent to writing `true` as a condition.
+		
+	* **`do while`** : _executes_ then tests _condition_
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
