@@ -992,20 +992,29 @@ while(cin >> buf && !buf.empty()){
 	if(buf[0] != '_'){
 		continue;			// read the next inout from I/O stream
 	}
-	// still here? means the word starts with an undrscore (_)....process buf
+	// still here? means the word starts with an underscore (_)....process buf
 	//..........
 	//......
 }
 ```
 
-* A **`goto`** statement provides an unconditional jump from the `goto` to **another labelled-statement in the same function**
+* A **`goto`** statement provides an unconditional jump from the `goto` to **another labeled-statement in the same function**
 
 ```cpp
-goto label;			// label is an idenitifer that identifies the satatement
+goto label;		// label is an idenitifer that identifies the satatement
 ```
 
-* 
+* **labeled statement** : Any statement that is preceded by an _identifier_ followed by `colon ( : )`
 
+```cpp
+label: return;		// labeled statement; label = label
+end: return;		// labeled statement; label = end
+```
+
+* `label identifiers` are independent of the names used for variables and other identifiers
+* Similar to `switch` statement, a `goto` cannot tranfer control from a point where an initialized variable is out-of scope to a point where that variable is in scope.
+
+* Jumping backwards to a point before a variable is defined; destroys the variable and constructs it again.
 
 
 
