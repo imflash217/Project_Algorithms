@@ -46,7 +46,7 @@ Infact in some machines, double-precision calculations are faster.
 * If we assigned an out-of-range value to an object of **`signed`** type, the result is **undefined**. The program might appear to work or crash or take garbage values.
 * If we used both `unsigned` and `int` in an arithmetic operation, then the `int` is implictly converted to `unsigned`.
 
-```c++
+```cpp
 unsigned u = 10;
 int i = -42;
 std::cout << i + i << endl;	// prints -84
@@ -55,12 +55,14 @@ std::cout << u + i << endl;	// if 32 bit ints; prints 4294967264
 
 * Integer `literals` that begin with `0` are called `octal`.
 * Integer `literals` that begin with `0x` or `0X` are called `Hexadecimal`.
+
 ```
 20	// decimal
 024	// octal
 0x43	// hexadecimal
 0X43	// hexadecimal
 ```
+
 * By default, `deciaml literals are signed`; while `octal` and `hexadecimal` literals can be either signed or unsigned.
 * **There are no literals of type `short`**.
 
@@ -76,6 +78,7 @@ std::cout << u + i << endl;	// if 32 bit ints; prints 4294967264
 
 
 * By default, the `floating-point literal` has type `double`.
+
 ```
 'a' ----- a character literal
 "a" ----- a string literal
@@ -109,7 +112,7 @@ backspace ------- \b	carriage return --- \r
 * **`extern`** :  To obtain a declaration that is not definition we use the keyword `extern`.
 	* An `extern` that has an initializer is a Definition.
 	* Its an ERROR to privide an initializer on an `extern` **inside a function**.
-```c++
+```cpp
 extern int i; 		 // it declares but doesnot define i.
 int j; 			 // it declares & defines j. 
 
@@ -189,7 +192,7 @@ not		xor_eq
 	There is no way to rebind a refernce to refer to another object.
 	As there is no way to rebind a refernce, **`references` must be initialized**.
 
-```c++
+```cpp
 int ival = 217;
 int &refVal = ival;	// refVal refers to (is another name for) ival
 int &refVal2;		// ERROR. references must be initialized.
@@ -209,7 +212,7 @@ int j = refVal3;	// initializes j to same value as ival
 * A plain refernce can be bound only to an `object`; not to a `literal` or `an expresion`.
 * But, we can bind a `const reference` to a `literal`.
 
-```c++
+```cpp
 int &refVal4 = 10;	// ERROR. Reference can't be bount to a literal (10)
 const int &ref = 217;	// OK: We can bind a const reference to a literal (217)
 double m_dval = 3.14;
@@ -218,13 +221,13 @@ int &refVal5 = m_dval;	// ERROR. Reference and object types must match. initiali
 
 * Because we can't change the value of the `const` object after we create it must be initialized.
 
-```c++
+```cpp
 const int i =  get_size();	// OK. initialized at runtime
 const int j = 32;		// OK. initialized at compile time
 const int k;			// ERROR. k is uninitialized const
 ```
 * To define a single instance of `const` variable that is accessible to other files, we use the `extern` keyword on both its **definition** and **declaration(s)**.
-```c++
+```cpp
 // file1.cpp 
 // define and initializes a const, extern keyword specifies that bufSize is accessible to other files
 extern const int bufSize = func();
@@ -236,7 +239,7 @@ extern const int bufSize;	// same bufSize as defined in file1.cpp
 
 * Unlike ordinary references, a **reference to `const`** cannot be used to change the object's value.
 
-```c++
+```cpp
 const int bufSize = 217;	// OK.
 const int &ref1 = bufSize;	// OK. ref1 is a refernce to const variable bufSize
 int &ref2 = bufSize		// ERROR. non-const reference can't refer to a const variable
@@ -246,7 +249,7 @@ ref1 = 2491;			// ERROR. refrence to const can't change the object's value
 
 * Binding a `reference to const` to a non-`const` object is LEGAL; but the refernce can't be used to change the value of the non-`const` object.
 
-```c++
+```cpp
 int i = 217;
 
 int &ref1 = i;		// ref1 is bound to 'i'. ref1 can be used to change the value of 'i'
@@ -262,7 +265,7 @@ ref2 = 1020;		// ERROR. ref2 is a 'refernce to const'. still "i = 2491"
 * We may store the address of a `const` object only in a **pointer to `const`**.
 * Dereferncing a pointer gives the object to which the pointer points.
 
-```c++
+```cpp
 const double pi = 3.14;		// OK. pi is a const double; its value can't be changed
 double *ptr = &pi;		// ERROR. non-const pointer(ptr) can't point to a const object (pi)
 const double *cptr = &pi;	// OK. only const pointers can store the address of const object
@@ -272,7 +275,7 @@ const double *cptr = &pi;	// OK. only const pointers can store the address of co
 
 * **EXCEPTION**: We can use a **pointer to `const`** to point to a non-`const` object but, can't change the object's value through the pointer.
 
-```c++
+```cpp
 double pi = 3.14;	// OK. non-const object
 const double *cptr = &pi;	// OK. but cant use cptr to change the value of pi
 ```
@@ -281,7 +284,7 @@ const double *cptr = &pi;	// OK. but cant use cptr to change the value of pi
 * Unlike references, **pointers** are `object`. So, pointers can be `const` too.
 * **`const` pointers**: Like any other `const` objects, a `const pointer` must be initialized & once initialized its value cannot be changed.
 
-```c++
+```cpp
 int errNumb = 0;
 int *const pErr = &errNumb;	// pErr is a const pointer. pErr will always point to errNumb
 const double pi = 3.14;
@@ -304,7 +307,7 @@ if (*pErr){			// if the object to which pErr points (i.e. errNumb) is non-zero
 * When we copy an object, top-level `const` are ignored.
 * Wen we copy an object both objects must have same low-level `const` qualifications. **Low-level `const` are never ignored.**
 
-```c++
+```cpp
 int i = 0;
 int *const p1 = &i;		// const is top-level
 const int ci = 42;		// const is top-level
@@ -342,12 +345,12 @@ const int &r2 = i;	// OK: can bind const int refernce to a plain int
 * The address of any variable defined outside any function is a constant expression. So we can use `constexpr` pointers to point to such objects.
 
 * When we specify a pointer in a `constexpr` declaration, the `constexpr` specifier applies to the pointer not the type to which the pointer points.
-```c++
+```cpp
 const int *p = nullptr;		// p is a pointer to a const int
 constexpr int *q = nullptr;	// q is a const pointer to int
 ```
 * `constexpr` imposes a top-level `const` on the objects it defines
-```c++
+```cpp
 constexpr int *np = nullptr;		// np is a const pointer to int that is a null
 int j = 0;
 constexpr int i = 217;			// i is a const int
@@ -360,7 +363,7 @@ constexpr int *p2 = &j;			// p2 is a const pointer to an int j
 * **Type alias** can be defined in the following two ways:
 	* **`typedef`** keyword
 	* **`using`** keyword
-```c++
+```cpp
 typedef double wages;		// wages is a synonym for double
 typedef wages base, *p;		// base is synonym for double, p is double*
 
@@ -370,7 +373,7 @@ using SI = Sales_Item;		// SI is a synonym for Sales_Item
 wages hourly, weekly;		// same as "double hourly, weekly"
 SI item;			// same as "Sales_Item item;
 ```
-```c++
+```cpp
 typedef char *pstring;		// pstring is "pointer to char" type
 const pstring cstr = 0;		// cstr is a const of type 'pstring' i.e cstr a 'const pointer to a char'
 const pstring *ps;		// ps is pointer that points to a const pstring (i.e ps is a pointer that points to a constant 'pointer to char')
@@ -385,7 +388,7 @@ const char *cstr = 0;		// ERROR: wrong interpretation of "const pastring cstr = 
 
 * When we define several variables in the same statement, it's important to remeber that `reference` or `pointer` is part of a particular declarator not part of the base type of declaration.
 
-```c++
+```cpp
 int i = 0;
 const int ci =i;		// OK: ci has "top-level const"
 auto k = ci, &l = i;		// OK: k is a "int" (top-level const are ignored while copying in auto), l is "int&"
@@ -406,7 +409,7 @@ auto &n = i, *p2 = &ci;		// ERROR: type deduced from 'i' is 'int', but type dedu
 	Hence, in such cases `decltype` returs a `reference`.
 	* **`decltype` of a paranthesized variable is always a reference**.
 
-```c++
+```cpp
 decltype(f()) sum = a;		// sum has a type that is returned by f()
 
 const int ci = 0, &cj = ci;
@@ -418,7 +421,7 @@ decltype(cj) z;			// ERROR: z is a refernce of type "const int&" and all refernc
 decltype((i)) d;		// ERROR: d has a type "int&" and hence must be initialized
 decltype(i) e;			// OK: e is an (uninitialized) "int"
 ```
-```c++
+```cpp
 decltype((variable)) --------> reference (always)
 decltype(variable) ----------> reference only if "variable is a reference"
 ```
@@ -450,7 +453,7 @@ decltype(variable) ----------> reference only if "variable is a reference"
 * **`scope-operator (::)`** It says that the Compiler should look in the scope of the left-hand operand for the name on the right-hand operand.
 * Headers should not use `using` declarations. If a header has a `using` declaration then, every program that #include that header file will get the same `using` declaration. As a result, a program that did not intend to use a specified library name might encounter name conflicts.
 
-```c++
+```cpp
 string s1;			// default initialization, s1 is an empty string
 string s2 = s1;			// copy initialization; s2 is a copy of s1
 string s3 = "rustom potter";	// copy initialization; s3 is a copy of the string literal, not including the null '\0'
@@ -464,7 +467,7 @@ string s4(17, 's');		// direct initialization; s4 is sssssssssssssssss
 
 * When we add `string` and `character/string literal`, atleast one operand to each **`+`** operator must be `string` type.
 
-```c++
+```cpp
 string s0 = "potter ";
 string s5 = s0 + "! ";			// OK:
 string s6 = "Rustom" + "! ";		// ERROR: Can't add two string-literals ("Rustom" + "! ")
@@ -478,19 +481,19 @@ string s8 = "Rustom" + " " + s0;	// ERROR: Can't add two string-literals ("Rusto
 	* The names defined in `cname` headers are defined in `std` namespace whereas those define din `.h` versions are not
 
 * **range `for` statement** : 
-```c++
+```cpp
 for (declaration : expression) statement;
 ```
 * The body of **range `for`** must not change the size of the sequence over which it is iterating.
 
-```c++
+```cpp
 string m_str("Rustom Potter");
 
 // range for statement to print each character in a string
 for (auto m_char : m_str) 
 	cout << m_char << endl;
 ```
-```c++
+```cpp
 cctype functions:
 
 isalnum()		isalpha()		iscntrl()		isdigit()
@@ -510,7 +513,7 @@ tolower()		toupper()
 * We can add elements to `vector` @runtime.
 * Most common way of using `vector` is to initially define an empty `vector` and then all elements @runtime
 
-```c++
+```cpp
 // In this example, the compiler generates 4 different types of vector templates 
 // vector<int>, vector<string>, vector<Sales_item>, vector<vector<int>>
 
@@ -528,7 +531,7 @@ vector<string>svec3 = ivec;	// ERROR: svec3 holds string, ivec holds int
 ```
 * **`push_back`** : It takes a value and "pushes" that value as a new element onto the **back** of the `vector`.
 
-```c++
+```cpp
 vector<int> m_vec;		// empty vector
 for (int i = 0; i<100; ++i){
 	m_vec.push_back(i);	// append sequential ints to vector m_vec
@@ -554,7 +557,7 @@ while(cin >> m_str){
 * We can dereference a valid iterator to obtain the element denoted by the iterator. 
 * Dereferencing an invalid iterator or and **off-the-end iterator** has undefined behaviour.
 
-```c++
+```cpp
 // Standard Container Iterator operations:
 
 *iter		---------------		Returns a reference to the element returned by the iterator "iter"
@@ -572,7 +575,7 @@ iter1 != iter2	---------------		Compares two iterators for inequality.
 ```
 
 * The library types that have iterators, define types named `iterator`  and `const_iterator` that represent actual iterator types:
-```c++
+```cpp
 vector<int>::iterator iter1;		// iter1 can read & write vector<int> elements
 string::iterator iter2;			// iter2 can read & write characters in a string
 
@@ -588,7 +591,7 @@ string::const_iterator iter4;		// iter4 can ONLY read characters in a string
 
 * **`cbegin()` and `cend()`** : regardless of whether the `vector`(or string) is `const` or not; they always return `const_iterator` type.
 
-```c++
+```cpp
 vector<int> v;
 const vector<int> cv;
 auto iter1 = v.begin();		// iter1 has type vector<int>::iterator
@@ -597,7 +600,7 @@ auto iter2 = cv.begin();	// iter2 has type vector<int>::const_iterator
 auto iter3 = v.cbegin();	// iter3 has type vector<int>::const_iterator
 ```
 * When we derefernce a `iterator`, we get the object that the `iterator` denotes.
-```c++
+```cpp
 vector<string> m_sVec;
 
 //.....some initialization of m_sVec
@@ -615,7 +618,7 @@ auto iter = m_sVec.begin();
 * **`->` operator**: The `->` (arrow) operator combines **dereference** and **member-access** into single operation.
 	* **`iter->mem`** is equivalent to **`(*iter).mem`**
 
-```c++
+```cpp
 // Arrow operator (->) is equivalent to 'dereference & member-access'
 
 iter->empty();		// OK: the ARROW-operator
@@ -633,7 +636,7 @@ iter->empty();		// OK: the ARROW-operator
 
 * The dimension of the array must be known at Compile time i.e dimension must be a **constant expression**.
 
-```c++
+```cpp
 unsigned int cnt = 17;
 string bad_Array[cnt];		// ERROR: "cnt" is not a constant expression
 
@@ -642,7 +645,7 @@ string good_Array[sz];		// OK: "sz" is a constant expression i.e its value will 
 string m_array[get_size()];	// OK if get_size() is a constant expression; ERROR otherwise
 ```
 * When we **list-initialize** an array, we **can** omit the dimension
-```c++
+```cpp
 const unsigned sz = 3;
 int ia1[sz] = {0,1,2};			// OK: an array of 3 ints with elements {0,1,2}
 int a2[] = {0,1,2};			// OK: an array of dimension 3 with elements {0, 1,2}
@@ -652,7 +655,7 @@ int a5[2] = {0,1,2};			// ERROR: too many initializers
 ```
 * REMEMBER: `string` literals end with a null-character (`\0`).
 
-```c++
+```cpp
 char a1[] = {'P', 'o', 't', 't', 'e', 'r'};		// Dimension = 6
 char a2[] = {'P', 'o', 't', 't', 'e', 'r', '\0'};	// Dimension = 7 (explicit null-character)
 char a3[] = "Potter";					// Dimesnion = 7 (null-character in string-literal is copied)
@@ -663,7 +666,7 @@ const char a4[6] = "Potter";				// ERROR: too many initializers (no room for inc
 * We cannot assign an `array` to another `array`.
 * We cannot use an `array` to initialize another `array`.
 
-```c++
+```cpp
 int a[] = {1,2,3};		// OK:
 int a1[] = a;			// ERROR: can't use another array to initialize an array
 a1 = a;				// ERROR: can't assign an array to another array.
@@ -672,7 +675,7 @@ a1 = a;				// ERROR: can't assign an array to another array.
 * By default, type modifiers bind from right to left.
 * In case of arrays, it can be easy to read array declarations from the **inside out** rather than **right to left**
 
-```c++
+```cpp
 int *parray[10];			// OK: parray is an array of 10 pointers-to-int
 int &rarray[10] = /* ? */;		// ERROR: reference is not an object & arrays can hold only objects
 
@@ -692,7 +695,7 @@ int &(*m_array2)[10] = /* ? */;		//ERROR: arrays cannot hold refernces (b'coz re
 * **operations on `array` are actually operations on `pointer`**.
 * When we use an `array` as an initializer for a variable defined using **`auto`**, the deduced type is a `pointer` not an `array`. But, if we use `decltype` then this issue doesn't arrise.
 
-```c++
+```cpp
 int ia[] = {0,1,2,3,4,5,6,7,8,9};	// ia is an array of ints
 auto ia2(ia);				// ia2 has type int* (a pointer to ia[0] element)
 					// same as: auto ia2(&ia[0]);
@@ -710,7 +713,7 @@ ia3[2] = 217;				// OK: assigns 217 to the ia3[2] position
 * Pointers to `array` elements support the same operations as **iterators** on `vector` or `string`.
 * As with `iterators`, subtracting two pointers give us the distance b/w two pointers; but the pointers must point to the elements in the same array:
 
-```c++
+```cpp
 auto n = end(arr) - begin(arr);		//OK:
 auto m = end(arr) - begin(arr2);	//ERROR if arr, arr2 are not same; can't subtract pointers from two different array
 ```
@@ -723,7 +726,7 @@ auto m = end(arr) - begin(arr2);	//ERROR if arr, arr2 are not same; can't subtra
 * We can't initialize an `array` from a `vector`.
 * But, we can initialize a `vector` from an `array`.
 
-```c++
+```cpp
 int int_array[] = {0, 1, 2, 3, 4, 5};
 
 vector<int> ivec(begin(int_array), end(int_array));	// ivec has same elements as int_array
@@ -840,13 +843,13 @@ But, if we use ordinary assignment, the left-hand operand is evaluated **twice**
 	* When execution jumps to a particular `case`, any code that occured inside the `switch` before that label is ignored.
 	* 
 
-```c++
+```cpp
 char ch = getVal();
 int ival = 217;
 const int cival = 17;
 const double cdval = 2.17;
 
-switc (ch){
+switch (ch){
 	case ival :		// ERROR : ival is not a constant expression
 	case 2.1798 : 		// ERROR : non-integer case labels not allowed
 	case cdval :		// ERROR : non-integer case labels not allowed
@@ -864,7 +867,7 @@ switc (ch){
 
 * B'coz C++ is free-form; case labels need not appear on a new line.
 
-```c++
+```cpp
 
 switch (ch) {
 	case 'a' : case 'e' : case 'i' : case : 'o' case 'u' :
@@ -901,12 +904,14 @@ switch (ch) {
 	* If we want to write to the elements of the sequence, the loop variable must be a `reference` type.
 	* We cannot use **range `for`** to **add/remove** elements of `vector` (or any other container).
 	
-```c++
+```cpp
+// Range for loop
 for (declaration : expression){
 	statement;
 }
 ```
-```c++
+
+```cpp
 vector<int> iVec = {1,2,3,4,5,6,7,8,9};
 
 // Range for loop
@@ -922,7 +927,7 @@ for (auto beg = iVec.begin(), end = iVec.end(); beg != end; ++beg){
 ```
 * We cannot use **range `for`** to **add/remove** elements of `vector` (or any other container) because in a `range for` the value of `end()` is **cached** and adding/removing elements might invalidate the the `end` value.
 
-```c++
+```cpp
 do {
 	//........
 	mumble(foo);
@@ -934,126 +939,73 @@ do {
 	* **`break`**
 	* **`continue`**
 	* **`goto`**
-	
+	* **`return`**
+
+* **`break`** statement terminates nearest enclosing `while`, `do while`, `for` or `switch` statements.
+
+* A **`break`** can appear only within an iteration statement or `switch` statement.
+
+```cpp
+string buf;
+
+while(cin >> buf && !buf.empty()){
+	switch (buf[0]){
+		case '-':
+			for(auto iter = buf.begin()+1; iter != buf.end(); ++iter){
+				if(*iter == ' '){
+					break;		// break #1, terminates the for loop
+				}
+				//.......			
+			}
+			// break #1 transfers control here
+			//.........
+			//.......
+		
+			break;				// break #2, terminates the switch loop
+			
+		case '+':
+			//.........
+			
+		case '/':
+			//.........
+	}
+	// break #2 transfers control here
+}
+```
+* A **`continue` statement** terminates the **current iteration** of the nearest enclosing loop and immediately begins the next iteration.
+
+* A **`continue`** statement can appear only in `for`, `while` or `do while` loop.
+
+* Unlike a `break`, a **`continue`** may appear inside a `switch` block only if that `switch` is embedded inside an _iterative_ statement.
+
+* Impacts of `continue` in
+	* `while` or `do while` loop: _next iteration continues by evaluating the condition_
+	* Traditional `for` loop: _next iteration continues by evaluating the `expression` in the `for`-header_
+	* Range `for` loop: _next iteration continues by initializing the **control variable** from the next element in the sequence_
+
+```cpp
+// Only words that begin with an underscore (_) will be processed
+
+string buf;
+
+while(cin >> buf && !buf.empty()){
+	if(buf[0] != '_'){
+		continue;			// read the next inout from I/O stream
+	}
+	// still here? means the word starts with an undrscore (_)....process buf
+	//..........
+	//......
+}
+```
+
+* A **`goto`** statement provides an unconditional jump from the `goto` to **another labelled-statement in the same function**
+
+```cpp
+goto label;			// label is an idenitifer that identifies the satatement
+```
+
+* 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	

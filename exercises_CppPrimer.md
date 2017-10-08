@@ -1,6 +1,6 @@
 **`Q.[2.1]`** What are the differences between `int, long, long long`, and `short`? Between an `unsigned` and a `signed` type? Between a `float` and a `double`?
 
-```c++
+```cpp
 $ int, long, long long & short:
 @ Each one of the above types have different storage capacities:
 	int -------- 16 bits
@@ -33,13 +33,13 @@ principal, and payment? Explain why you selected each type.
 ```
 
 **`Q.[2.5]`** Determine the type of each of the following literals. Explain the differences among the literals in each of the four examples:
-```c++
+```cpp
 (a) ’a’, L’a’, "a", L"a"
 (b) 10, 10u, 10L, 10uL, 012, 0xC
 (c) 3.14, 3.14f, 3.14L
 (d) 10, 10u, 10., 10e-2
 ```
-```c++
+```cpp
 $ 'a', L'a', "a", L"a" :
 @ 'a' ------ a character literal --- type char
   L'a' ----- a character literal --- type wchar_t
@@ -70,11 +70,11 @@ $ 10, 10u, 10.0, 10e-2 :
 ```
 
 **`Q. [2.6]`** What, if any, are the differences between the following definitions:
-```c++
+```cpp
 int month = 9, day = 7;
 int month = 09, day = 07;
 ```
-```c++
+```cpp
 $ int month = 9, day = 7;
 @ here month & day are integers for DECIMAL values of 9 & 7 respectively.
 
@@ -84,13 +84,13 @@ $ int month = 09, day = 07;
 
 **`Q. [2.9]`**Explain the following definitions. For those that are illegal, explain
 what’s wrong and how to correct it.
-```c++
+```cpp
 (a) std::cin >> int input_value; 
 (b) int i = { 3.14 };
 (c) double salary = wage = 9999.99; 
 (d) int i = 3.14;
 ```
-```c++
+```cpp
 $ std::cin >> int input_value;
 @ CORRECT. Here, we are defining input_vale as int.
 
@@ -106,7 +106,7 @@ $ int  i = 3.14;
 
 **`Q. [2.10]`** What are the initial values, if any, of each of the following variables?
 
-```c++
+```cpp
 $ 	std::string global_str;
 	int global_int;
 	int main()
@@ -123,13 +123,13 @@ $ 	std::string global_str;
 ```
 
 **`Q. [2.26]`** Which of the following are legal? For those that are illegal, explain why.
-```c++
+```cpp
 (a) const int buf; 
 (b) int cnt = 0;
 (c) const int sz = cnt; 
 (d) ++cnt; ++sz;
 ```
-```c++
+```cpp
 $ const int buf;
   int cnt = 0;
   const int sz = cnt;
@@ -143,13 +143,14 @@ $ const int buf;
 ```
 
 **`Q. [2.30]`** For each of the following declarations indicate whether the object being declared has top-level or low-level const: 
-```c++
+```cpp
 const int v2 = 0; 
 int v1 = v2;
 int *p1 = &v1, &r1 = v1;
 const int *p2 = &v2, *const p3 = &i, &r2 = v2;
 ```
-```c++
+
+```cpp
 $ const int v2 = 0;
 @ v2 ---- top-level const
   v2 is a variable of const type, its value can not be changed ever.
