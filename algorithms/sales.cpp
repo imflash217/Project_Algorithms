@@ -6,6 +6,12 @@
 #include <iostream>
 #include <string>
 #include "Sales_data.h"
+// #include <stdexcept>
+
+using std::cin;
+using std::cout;
+using std::endl;
+// using std::runtime_error;
 
 int main(){
 	Sales_data data1, data2;
@@ -40,7 +46,37 @@ int main(){
 		std::cerr << "Data must refer the same ISBN" << std::endl;
 		return -1;		// indicates FAILURE
 	}
-	
+/*
+	// while(cin >> data1 >> data2){
+		try{
+			if(data1.isbn != data2.isbn){
+				throw runtime_error("Data must refer to the same ISBN");
+			}
+
+			unsigned totalCount = data1.units_sold + data2.units_sold;
+			double totalRevenue = data1.revenue + data2.revenue;
+			
+			// print ISBN, total sold, total revenue, average-price-per-book
+			std::cout << data1.isbn << " " << totalCount << " " << totalRevenue << " ";
+			if (totalCount != 0){
+				std::cout << totalRevenue/totalCount << std::endl;
+			}
+			else{
+				std::cout << "(no sales)" << std::endl;
+			}
+			return 0;		// indicates SUCCESS
+		} catch (runtime_error err){
+			cout << err.what()
+				<< "\nTry Again? Enter 'y' or 'n'" << endl;
+			char response;
+			cin >> response;
+			if(!cin || response == 'n'){
+				// break;		// must be inside a loop 
+				return -1;
+			}
+		}
+	// }
+*/
 }
 
 
