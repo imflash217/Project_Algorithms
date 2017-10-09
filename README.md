@@ -1016,5 +1016,20 @@ end: return;		// labeled statement; label = end
 
 * Jumping backwards to a point before a variable is defined; destroys the variable and constructs it again.
 
+* **`Exceptions`** are `run-time` anomalies.
 
+* **`runtime_error`** is a standard library eception and is defined in the **`stdexcept`** header
+
+* As with any block, the `variables` declared inside the `try` block are inaccessible outside the block -- in particular they are not accessible to the `catch` clauses.
+
+* Each of the library exception classes defines a member function named **`what()`**
+
+* If no appropriate `catch` is found then the execution is transferred to a library function named **`terminate`** which is guaranteed to stop further execution of the program.
+
+* If a program has no `try` blocks and an exception occurs then **`terminate`** is called and the program is exited.
+
+-----------------------------------------------------------------------------------------
+
+* **Functions** may be **overloaded**, meaning the same name may refer to several different functions.
+* 
 
