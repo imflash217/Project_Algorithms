@@ -1031,5 +1031,20 @@ end: return;		// labeled statement; label = end
 -----------------------------------------------------------------------------------------
 
 * **Functions** may be **overloaded**, meaning the same name may refer to several different functions.
-* 
+* A `function`'s call does two things:
+	* Initializes the function's parameters with the corresponding arguments
+	* Transfers control to that function
+	* Execution of the calling function is **suspended**(not terminated) and execution of the called function begins
+
+* The `return` statement does two things:
+	* Return the value 
+	* Transfers the control out of the called function to the calling function
+
+* Although we know which argument initializes which parameter; the order in which the arguments are evaluated completely depends on the Compiler.
+
+* The type of the `argument` and `parameter` must match (or be convertible to the required type).
+* Local variables at the outermost scope of the `function` may not use the same name as any parameter.
+* The return type of a function may not be an `array` type or a `function` type. However, it may return a `pointer`-to-array or `pointer`-to-function.
+
+
 
