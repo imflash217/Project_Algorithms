@@ -1058,5 +1058,16 @@ end: return;		// labeled statement; label = end
 * **`local variables`** :
 	* Parameters and variables defined inside a function body are called _local variables_
 	* They **hide** declarations of the same name in an outer space
+	* The **lifetime** of a local variable depends on how it is defined
+* Objects defined outside _any function_ exist throughout the program's execution.
+* **Automatic Objects** :  
+	* Objects that exist only while a block is executing are known as _automatic objects_
+	* After execution exits a block, the value of the automatic objects created in that block is _undefined_
+	* **Parameters** are automatic objects.
+	* Automatic objects corresponding to local variables are initialized if their definition contains an initializer; otherwise it is default initialized.
+
+* `Reference parameters` allow a `function` to change the value of one or more of its `arguments`.
+* `Reference parameters` that are not changed inside a function should be _references to_ `const`.
+* We can pass either a `const` or a non-`const` object to a parameter that has a **top-level `const`**
 
 
