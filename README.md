@@ -112,6 +112,7 @@ backspace ------- \b	carriage return --- \r
 * **`extern`** :  To obtain a declaration that is not definition we use the keyword `extern`.
 	* An `extern` that has an initializer is a Definition.
 	* Its an ERROR to privide an initializer on an `extern` **inside a function**.
+
 ```cpp
 extern int i; 		 // it declares but doesnot define i.
 int j; 			 // it declares & defines j. 
@@ -141,39 +142,39 @@ public void functionA(.....){
 ```
 C++ Keywords:
 
-alignas		else		public			unsigned
-alignof		enum		register		using
-asm		explicit	reinterpret_cast	
-auto		export		return			virtual
-bool		extern		short			void
-break		false		signed			volatile
-case		float		sizeof			wchar_t
-catch		for		static			while
-char		friend		static_assert
-char16_t	goto		static_cast
-char32_t	if		struct
-class		inline		switch
-const		int		template
-constexpr	long		this
-const_cast	mutable		thread_local
-continue	namespace	throw
-decltype	new		true
-default		noexcept	try
-delete		nullptr		typedef
-do		operator	typeid
-double		private		typename
-dynamic_cast	protected	union
+alignas			else			public				unsigned
+alignof			enum			register			using
+asm				explicit		reinterpret_cast	
+auto			export			return				virtual
+bool			extern			short				void
+break			false			signed				volatile
+case			float			sizeof				wchar_t
+catch			for				static				while
+char			friend			static_assert
+char16_t		goto			static_cast
+char32_t		if				struct
+class			inline			switch
+const			int				template
+constexpr		long			this
+const_cast		mutable			thread_local
+continue		namespace		throw
+decltype		new				true
+default			noexcept		try
+delete			nullptr			typedef
+do				operator		typeid
+double			private			typename
+dynamic_cast	protected		union
 
 //----------------------------------------------
 
 C++ Alternative operator names:
 
-and		not
+and			not
 and_eq		not_eq
 bitand		or
 bitor		or_eq
 compl		xor
-not		xor_eq
+not			xor_eq
 
 ```
 * The global scope has no name. Hence when the scope operator(`::`) has an empty lefthand side, it is a request to fetch the name on the right-hand side from the global scope.
@@ -227,6 +228,7 @@ const int j = 32;		// OK. initialized at compile time
 const int k;			// ERROR. k is uninitialized const
 ```
 * To define a single instance of `const` variable that is accessible to other files, we use the `extern` keyword on both its **definition** and **declaration(s)**.
+
 ```cpp
 // file1.cpp 
 // define and initializes a const, extern keyword specifies that bufSize is accessible to other files
@@ -350,6 +352,7 @@ const int *p = nullptr;		// p is a pointer to a const int
 constexpr int *q = nullptr;	// q is a const pointer to int
 ```
 * `constexpr` imposes a top-level `const` on the objects it defines
+
 ```cpp
 constexpr int *np = nullptr;		// np is a const pointer to int that is a null
 int j = 0;
@@ -363,6 +366,7 @@ constexpr int *p2 = &j;			// p2 is a const pointer to an int j
 * **Type alias** can be defined in the following two ways:
 	* **`typedef`** keyword
 	* **`using`** keyword
+
 ```cpp
 typedef double wages;		// wages is a synonym for double
 typedef wages base, *p;		// base is synonym for double, p is double*
@@ -600,6 +604,7 @@ auto iter2 = cv.begin();	// iter2 has type vector<int>::const_iterator
 auto iter3 = v.cbegin();	// iter3 has type vector<int>::const_iterator
 ```
 * When we derefernce a `iterator`, we get the object that the `iterator` denotes.
+
 ```cpp
 vector<string> m_sVec;
 
@@ -762,7 +767,7 @@ vector<int> subVec(begin(int_array) + 1, begin(int_array)+4);	// copies int_arra
 * Precedence specifies how the operands are grouped, it says nothing about the **order** in which the operands are evaluated. In most cases, the orderis largely undefined.
 * The order of operand evaluation is determined by the Compiler to avoid pitfalls in programs.
 
-```C++
+```cpp
 int A = f1() * f2();
 
 // We know that f1() and f2() are called before the multiplication is carried.
@@ -770,7 +775,8 @@ int A = f1() * f2();
 ```
 
 * For operators that donot specify evaluation order, its an `ERROR` for an expression to **_refer to and change the same object_**.
-```C++
+
+```cpp
 int i = 0;
 cout << i << ", " << ++i << endl;		// ERROR: UNDEFINED behaviour
 
@@ -807,6 +813,7 @@ cout << i << ", " << ++i << endl;		// ERROR: UNDEFINED behaviour
 * The `assignment operator ( = )` is **right-associative**.
 
 * **Compound assignment** :
+
 ```
 += , -= , *= , /= , %=			// Arithmetic operators
 
@@ -841,7 +848,6 @@ But, if we use ordinary assignment, the left-hand operand is evaluated **twice**
 	* ERROR for any two `case labels` to have the same value
 	* `label` may not stand alone; it must precede a statement or another case label
 	* When execution jumps to a particular `case`, any code that occured inside the `switch` before that label is ignored.
-	* 
 
 ```cpp
 char ch = getVal();
@@ -1046,5 +1052,11 @@ end: return;		// labeled statement; label = end
 * Local variables at the outermost scope of the `function` may not use the same name as any parameter.
 * The return type of a function may not be an `array` type or a `function` type. However, it may return a `pointer`-to-array or `pointer`-to-function.
 
+* In C++, `name` has **scope** and `object` has **lifetime**
+* The **scope** of a `name` is the _part of the program's text_ in which that `name` is _visible_.
+* The **lifetime** of an `object` is the _time during the program's execution_ that the object exists.
+* **`local variables`** :
+	* Parameters and variables defined inside a function body are called _local variables_
+	* They **hide** declarations of the same name in an outer space
 
 
