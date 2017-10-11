@@ -1094,7 +1094,11 @@ func(j);		// OK: j is converted to (int *) that points to j[0]
 
 * If we pass an array to a function that `argument` is automatically converted to a `pointer-to-the-first-element` in the array; the size of the array is irrelevant.
 
-* 
+* Functions with varying `parameters`: C++ has following ways to write a function that takes varying no. of arguments:
+	* If all the arguments have the same type, we can pass a library type named **`initializer_list`**.
+	* If the arguments' type vary we can write a special type of function, known as **variadic template**
+	* **ellipsis** (this facility is normally used in programs that need to interface with C programs)
+
 
 
 
