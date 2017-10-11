@@ -47,6 +47,33 @@ string::size_type find_char(const string &arg1, const char &arg2, string::size_t
 }
 
 
+// functions that take array as arguments
+
+// method 1: using a marker
+void print_func1(const char *arg1){
+	if(arg1){						// if arg1 is not a NULL pointer
+		while(*arg1){				// as long as char it points to is not a NULL value
+			cout << *arg1++;		// prints the char and increment the pointer
+		}
+	}
+}
+
+// Method 2: using the standard library conventions
+void print_func2(const int *beg, const int *end){
+	while(beg != end){
+		cout << *beg++;
+	}
+}
+
+// Method 3: Explicitly passing the size parameter
+void print_func3(const int intArray[], size_type arraySize){
+	for(size_type i = 0; i != arraySize; ++i){
+		cout << intArray[i] << endl;
+	}
+}
+
+
+
 
 int main(){
 
