@@ -1069,5 +1069,33 @@ end: return;		// labeled statement; label = end
 * `Reference parameters` allow a `function` to change the value of one or more of its `arguments`.
 * `Reference parameters` that are not changed inside a function should be _references to_ `const`.
 * We can pass either a `const` or a non-`const` object to a parameter that has a **top-level `const`**
+* **top-level** `const` on parameters are ignored
+* We cannot pass a `const` object, or a `literal`, or an object that requires conversion to a **plain reference type**.
+
+* **We cannot copy an `array`.** So, we cannot pass an array by value. 
+* When we use an `array`, it is (usually) converted to a `pointer`. So, when we pass an array to a function we are actually passing a pointer to the array's first element.
+
+```cpp
+// despite appearances all the three declarations of 'func' are equivalent
+// each function has a single parameter of type 'int *'
+// when the Compiler checks a call to 'func', it only checks that the argument has type 'const int*'
+
+void func(const int *);
+void func(const int[]);
+void func(const int[10]);
+
+
+int i = 0, j[2] = {1, 2};
+
+func(&i);		// OK: &i is a (int *)
+func(j);		// OK: j is converted to (int *) that points to j[0]
+
+```
+
+* If we pass an array to a function that `argument` is automatically converted to a `pointer-to-the-first-element` in the array; the size of the array is irrelevant.
+
+* 
+
+
 
 
