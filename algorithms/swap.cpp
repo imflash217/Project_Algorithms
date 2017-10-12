@@ -66,14 +66,24 @@ void print_func2(const int *beg, const int *end){
 }
 
 // Method 3: Explicitly passing the size parameter
-void print_func3(const int intArray[], size_type arraySize){
-	for(size_type i = 0; i != arraySize; ++i){
+void print_func3(const int intArray[], string::size_type arraySize){
+	for(string::size_type i = 0; i != arraySize; ++i){
 		cout << intArray[i] << endl;
 	}
 }
 
+// we can assign to the result of a function that returns a "reference to non-const"
+char &get_val(string &str, string::size_type ix){
+	return str[ix];
+}
+
+// if the return type is a reference-to-const; we can't assign to the result of the func. call
+const string &shorterString(const string &str1, const string &str2){
+	return (str1.size() < str2.size()) ? str1 : str2;		// conditional operator
+}
 
 
+//------------------------------------------------------------------------------------------
 
 int main(){
 
@@ -87,6 +97,17 @@ int main(){
 	string::size_type frequency = 0;
 	auto index = find_char(str, chr, frequency);
 	cout << "index = " << index << ", frequency = " << frequency << endl;
+
+	// assigning to the return of a function
+	get_val(str, 6) = '_';		// we can assign to the result of a function that returns a "reference to non-const" lvalue
+	cout << str << endl;		// prints the updated str
+
+	//
+	string str1 = ("Rustom");
+	string str2 = ("Potter");
+	cout << shorterString(str1, str2) << endl;
+	// shorterString(str1, str2) = "Prithvi";		// cannot assign to a const lvalue returned by shorterString()
+	// cout << str2 << endl;
 
 	//
 	return 0;		// SUCCESS
