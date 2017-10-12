@@ -1102,6 +1102,8 @@ func(j);		// OK: j is converted to (int *) that points to j[0]
 * Calls to `functions` that return `references` are `lvalues`; other return types are `rvalues`.
 * B'coz functions that return references actually return `lvalues`, we can assign to the result of a function that returns a `reference`-to-non`const`.
 
+* B'coz we cannot copy an array; a function cannot return an array but can return a pointer or refernce to array.
+
 
 
 
