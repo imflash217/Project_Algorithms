@@ -1099,6 +1099,9 @@ func(j);		// OK: j is converted to (int *) that points to j[0]
 	* If the arguments' type vary we can write a special type of function, known as **variadic template**
 	* **ellipsis** (this facility is normally used in programs that need to interface with C programs)
 
+* Calls to `functions` that return `references` are `lvalues`; other return types are `rvalues`.
+* B'coz functions that return references actually return `lvalues`, we can assign to the result of a function that returns a `reference`-to-non`const`.
+
 
 
 
