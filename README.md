@@ -440,7 +440,7 @@ decltype(variable) ----------> reference only if "variable is a reference"
 
 * The **Preprocessor** is a program that runs before the Compiler & changes the source text of our program.
 * **Preprocessor variables** are used to guard against multiple inclusions.
-* The **`#define`** directive takes a nake and define that as a **preprocessor** variable.
+* The **`#define`** directive takes a name and define that as a **preprocessor** variable.
 * The preporcessor variables can have states: **`defined`** or **`not defined`**.
 	* **`#ifdef`** is `true` if the preprocessor variable is defined.
 	* **`#ifndef`** is `true` if the preprocessor variable is not defined.
@@ -1104,7 +1104,43 @@ func(j);		// OK: j is converted to (int *) that points to j[0]
 
 * B'coz we cannot copy an array; a function cannot return an array but can return a pointer or refernce to array.
 
+* Functions that have the same name but different parameter list and appear in the same scope are called **overloaded** functions.
 
+```cpp
+// OVERLOADED functions
+void func(const char *cp);
+void func(const int a);
+void func(const int *ip, const string str);
+void func(const int i, const string &str);
+```
+
+* **Overloaded** functions must differ in the number or type(s) of the parameters.
+* It's an ERROR for two functions to differ ONLY in their `return` types. If the name and parameter list of two functions match but the `return` types differ then the second declaration is an ERROR.
+
+```cpp
+void func(int i);
+bool func(int j);	// ERROR: only the return type is different
+```
+
+* A parameter that has a `top-level const` is indistinguishable from the one that does not.
+
+```cpp
+bool func1(Phone);
+bool func1(const Phone);		// redeclares func1(Phone); top-level const are ignored
+
+int func2(Phone*);
+int func(Phone* const);			// redeclares func2(Phone*); top-level const are ignored
+
+// in these declarations, the second declaration declares the same function as first
+
+```
+
+* We can overload functions based on whether the `paramater` is a `reference(or pointer)` **to** `const or non-const` (b'coz such `const` are low-level consts) of a given type.
+
+* **Overloading & Scope** : If we declare a name in an inner scope that name _hides_ the name(s) declared in an outer scope. Names donot override across scopes.
+
+* Usually its a bad idea to declare function at `local scope`.
+* In C++, name lookups happen before type checking.
 
 
 
