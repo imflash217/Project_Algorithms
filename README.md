@@ -1066,6 +1066,12 @@ end: return;		// labeled statement; label = end
 	* **Parameters** are automatic objects.
 	* Automatic objects corresponding to local variables are initialized if their definition contains an initializer; otherwise it is default initialized.
 
+* **local `static` objects**: 
+	* local variables whose _lifetime_ continues across calls to the function
+	* Each **local `static` object** is initialized _before_ the first time the **execution** passes through the object's definition.
+	* Local `static` objects are NOT destroyed when the function ends; they are destroyed when the program terminates.
+	* local `static` objects of _build-in_ tyes are initialized to `zero (0)`.
+
 * `Reference parameters` allow a `function` to change the value of one or more of its `arguments`.
 * `Reference parameters` that are not changed inside a function should be _references to_ `const`.
 * We can pass either a `const` or a non-`const` object to a parameter that has a **top-level `const`**
@@ -1141,6 +1147,28 @@ int func(Phone* const);			// redeclares func2(Phone*); top-level const are ignor
 
 * Usually its a bad idea to declare function at `local scope`.
 * In C++, name lookups happen before type checking.
+* Some functions have parameters that are given a particular value in most (but not all) calls. In such cases we can declare that common value as a **default argument** for the function.
+
+* **`inline` and `constexpr`**:
+	* `inline` and `constexpr` functions are defined in Header File.
+	* Unlike other functions, `inline` and `constexpr` functions may be defined multiple times in a program but all definitions of a given `inline`/`constexpr` function **must match exactly**.
+
+* **`assert` and `NDEBUG`**:
+	* These are two **preprocessor** facilities used for Debugging code.
+	* `assert` macro is defined in `<cassert>` header.
+	* B'coz preprocessor names are managed by the **preprocessor** not the Compiler, we donot need to provide `using` declaration for the preprocessor variables.
+	* `assert` macro is often used to check for conditions that **cannot happen**.
+	* The behaviour of `assert` macro depends on the status of the preprocessor variable named **`NDEBUG`**.
+	* In addition to using `assert`, we can write our own conditional debugging code using `NDEBUG`, `#indef` and `#endif`
 
 
+* **`assert`** is a **preprocessor macro**. A preprocessor macro is a preprocessor variable which acts somewhat like an `inline` function.
+
+```cpp
+#include <cassert>
+
+assert(expression);
+```
+* If the expression is `false` then the `assert` writes a message and **terminates the program**, otherwise it does nothing.
+* If `NDEBUG` is defined, `assert` does nothing. By default, `NDEBUG` is not defined and hence, by default, `assert` does a run-time check.
 
