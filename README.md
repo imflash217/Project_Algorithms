@@ -1172,3 +1172,16 @@ assert(expression);
 * If the expression is `false` then the `assert` writes a message and **terminates the program**, otherwise it does nothing.
 * If `NDEBUG` is defined, `assert` does nothing. By default, `NDEBUG` is not defined and hence, by default, `assert` does a run-time check.
 
+* A constant integral value of **`0`** or the _pointer literal_ **`nullptr`** can be converted to any pointer type.
+* A pointer to any non-`const` type can be converted to **`void *`**
+* A pointer to any type can be converted to **`const void *`**
+* Small integral types always promote to `int` or larger integral types.
+
+* **Function pointer** : 
+	* A pointer that points to a `function` rather than an `object`
+	* Like any other pointer a function-pointer points to a particular type.
+	* A function's type is determined by the `return` type and the types of its parameters; the function name is not part of its type.
+	
+
+
+
