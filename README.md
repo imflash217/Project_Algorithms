@@ -1181,7 +1181,51 @@ assert(expression);
 	* A pointer that points to a `function` rather than an `object`
 	* Like any other pointer a function-pointer points to a particular type.
 	* A function's type is determined by the `return` type and the types of its parameters; the function name is not part of its type.
-	
+
+
+```cpp
+
+// function compares two strings
+bool compareStrings(const string &str1, const string &str2);
+
+// here, function compareStrings has a type "bool (const string &, const string &)"
+
+// "ptrFunc" is a pointer to a function with return type "bool" and that takes two "const string refernces" as parameteres
+bool (*ptrFunc)(const string &, const string &);
+
+
+// the paranthesis around the pointer is necesary otherwise:
+// here "pf" is NOT a pointer to a function
+bool *pf(const string &, const string &);	// pf is a function that returns a "bool *" type
+
+```
+
+* When we use the name of the pointer as a value, the function is automatically converted to a pointer.
+```cpp
+// we can assign the address of function "compareStrings" to the function-pointer "ptrFunc" as:
+ptrFunc = compareStrings;	// OK
+ptrFunc = &compareStrings;	// OK
+```
+
+* We can use a pointer-to-function to call the function to which the pointer points. There is no need to dereference the pointer:
+
+```cpp
+
+bool b1 = ptrFunc("Rustom", "Potter");			// OK
+bool b2 = (*ptrFunc)("Rustom", "Potter");		// OK. Equivalent to previous call
+bool b3 = compareStrings("Rustom", "Potter");	// OK
+
+bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
+```
+
+* There is no conversion b/w pointers of one function type and pointers of another function type.
+
+* Just as with `arrays` we cannot define parameters of `function type`; but we can have a parameter that is a pointer to a function.
+* Just as with array type, we can write a parameter that looks like a `function type` but it will be treated like a pointer.
+
+* Just as with `arrays`, we cannot return a function type but we can return a pointer to a function.
+* The Compiler will not automatically treat a function return type as the corresponding pointer type; so we must return a pointer type.
+
 
 
 
