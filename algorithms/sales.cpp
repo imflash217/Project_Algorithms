@@ -19,21 +19,21 @@ int main(){
 	// code to read data1 and data2
 	double price = 0;		// price per book, used to calculate total revenue
 		// reading into data1
-	std::cin >> data1.isbn >> data1.units_sold >> price;
+	std::cin >> data1.bookNo >> data1.units_sold >> price;
 	data1.revenue = data1.units_sold * price;
 		// reading into data2
-	std::cin >> data2.isbn >> data2.units_sold >> price;
+	std::cin >> data2.bookNo >> data2.units_sold >> price;
 	data2.revenue = data2.units_sold * price;
 	
 	// code to check whether data1 and data2 have same ISBN
 	//		and if so then print the sum of data1 and data2
 	
-	if(data1.isbn == data2.isbn){
+	if(data1.bookNo == data2.bookNo){
 		unsigned totalCount = data1.units_sold + data2.units_sold;
 		double totalRevenue = data1.revenue + data2.revenue;
 		
 		// print ISBN, total sold, total revenue, average-price-per-book
-		std::cout << data1.isbn << " " << totalCount << " " << totalRevenue << " ";
+		std::cout << data1.bookNo << " " << totalCount << " " << totalRevenue << " ";
 		if (totalCount != 0){
 			std::cout << totalRevenue/totalCount << std::endl;
 		}
@@ -77,6 +77,24 @@ int main(){
 		}
 	// }
 */
+}
+
+void updatedSales(){
+	Sales_data total;
+	if(read(cin, total)){
+		Sales_data trans;
+		while(read(cin, trans)){
+			if(trans.isbn() == total.isbn()){
+				total.combine(trans);
+			}else{
+				print(cout, total) << endl;
+				total = trans;
+			}
+		}
+		print(cout, total) << endl;
+	} else{
+		cerr << "No Data!!!" << endl;
+	}
 }
 
 
