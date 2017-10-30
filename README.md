@@ -1226,6 +1226,37 @@ bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
 * Just as with `arrays`, we cannot return a function type but we can return a pointer to a function.
 * The Compiler will not automatically treat a function return type as the corresponding pointer type; so we must return a pointer type.
 
+---------------------------------------------------------------------------------------------------------------
+
+* The fundamental ideas behind **`class`** are :
+	* **Data Abstraction** :
+	* **Encapsulation** : 
+
+* **Data Abstraction** is a programming (and design) technique that relies on the separation of **interface** and **implementation**.
+
+* **Interface** : It consists of `operations` that the users of the `class` can execute.
+
+* **Implementation** : It includes
+	* class's data members,
+	* bodies of the functions that constitute the interface,
+	* and any other functions that are necessary for class's defintion but not intended for general use.
+
+* **Encapsulation** enforces the separation of class's **`interface`** and **`implementation`**.
+
+> A `class` that is **encapsulated** hides its `implementation`; users can use the `interface` but cannot access the `implementation`.
+
+* **Abstract Data Type** : A `class` that uses `data abstraction` and `encapsulation`.
+* Member functions must be **declared** inside the class; but can be **defined** outside/inside the class body.
+* Non-member functions that are part of the interface are declared and defined outside the class.
+
+* The compiler processes `class` in two steps:
+	* The member declarations are compiled first.
+	* Then, the member function bodies are processed.
+
+* The name of the member defined outside the class must include the name of the class of which it is a member.
+
+* We donot need to use the implicit `this` pointer to access the members of the object on which the member function is executing. However, we do need to use `this` to access the object as a whole.
+
 
 
 
