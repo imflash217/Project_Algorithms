@@ -820,7 +820,7 @@ cout << i << ", " << ++i << endl;		// ERROR: UNDEFINED behaviour
 <<= , >>= , &= , ^= , |=		// bitwise operators
 ```
 
-* When we use _compund assignment_, the left-hand operand is evaluated only **once**. 
+* When we use _compound assignment_, the left-hand operand is evaluated only **once**. 
 But, if we use ordinary assignment, the left-hand operand is evaluated **twice** (once in the operation on right-hand side and again as the operand on the left-hand side). Apart from performance issue there is no b ig deal about using either.
 
 * **prefix** (`++i`) 
@@ -1268,7 +1268,30 @@ bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
 	* A `constructor` is run whenever an object of the class is created.
 	* A constructor has same name as its `class` 
 	* Unlike other functions, `constructor` has no `return type`.
-	
+	* A `class` can have multiple constructors. Like any `overloaded functions`, the `overloaded constructors` must differ in the numer or types of the parameters.
+	* A `constructor` may not be declared as `const`.
+
+* When we create a `const` object of a `class` type, the object does not assume its "`const`ness" untill after the `constructor` completes the initialization.
+
+* `constructors` can **write** to `const` object during their construction.
+
+* **`Default constructor`** :
+	* `Default constructor` is the one that takes no arguments.
+	* Classes control **default initialization** by defining a special constructor known as **`Default constructor`**
+	* If a class does not _explicitly_ define any constructor, then the compiler will _implicitly_ define a `default constructor` for it.
+	* The `compiler-generated constructor` is known as **`Synthesized Default Constructor`**
+
+* For most classes, the `synthesized constructor` initializes each data member in the class as follows:
+	* If there is an `in-class initializer`, use it to initialize the member;
+	* Otherwise, `default-initialize` the member
+
+* The compiler generates a `default constructor` automatically _only if we donot define any `constructor` for the class_
+* If we define any `constructor`, then the compiler will not generate any `default constructor` untill unless we define it ourselves.
+
+* The objects of built-in or compound types that are defined inside a block have `undefined` values when `default initialized`. Thus, classes that have members of built-in or compound types should either initialize those members inside the class or define their own default constructor.
+
+* If a `class C1` has a member `X` that has a clasa type `class C2` and class `C2` doesnot have a defualt constrctor then the **compiler** cannot initialize the member `X` (if `C1` also doenot have a defualt initializer)
+
 
 
 
