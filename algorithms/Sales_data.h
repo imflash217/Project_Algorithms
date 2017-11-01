@@ -19,9 +19,9 @@ struct Sales_data{
 	double avg_price() const;					// declaration
 
 	// data members
-	std::string bookNo;
-	unsigned units_sold = 0;
-	double revenue = 0.0;	
+	std::string bookNo;				// no in-class initializer, so will be default-initialized (if no constructor)
+	unsigned units_sold = 0;		// in-class initializer for units_sold
+	double revenue = 0.0;			// in-class initializer for revenue
 };
 
 // function definitions
