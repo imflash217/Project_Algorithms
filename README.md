@@ -1257,6 +1257,18 @@ bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
 
 * We donot need to use the implicit `this` pointer to access the members of the object on which the member function is executing. However, we do need to use `this` to access the object as a whole.
 
+* Ordinarily, `non-member functions` that are part of the `interface of the class` should be **declared**(but not defined) in the same header as the `class` itself.
+
+* **IO classes** are types that cannot be copied; so we may only pass them by reference.
+* Copying a class's `object` copies that object's `members`
+
+* **Constructors** :
+	* Classes control object initialization by defining one or more special member function called **`constructors`**
+	* `Constructors` initializes data members of the class object.
+	* A `constructor` is run whenever an object of the class is created.
+	* A constructor has same name as its `class` 
+	* Unlike other functions, `constructor` has no `return type`.
+	
 
 
 
