@@ -1290,8 +1290,17 @@ bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
 
 * The objects of built-in or compound types that are defined inside a block have `undefined` values when `default initialized`. Thus, classes that have members of built-in or compound types should either initialize those members inside the class or define their own default constructor.
 
-* If a `class C1` has a member `X` that has a clasa type `class C2` and class `C2` doesnot have a defualt constrctor then the **compiler** cannot initialize the member `X` (if `C1` also doenot have a defualt initializer)
+* If a `class C1` has a member `X` that has a clasa type `class C2` and class `C2` doesnot have a defualt constructor then the **compiler** cannot initialize the member `X` (if `C1` also does not have a defualt initializer)
 
+* Constructors should not override `in-class` initializers except to use a different initial value. If you can't use `in-class initializers` then each constructor should explicitly initialize each member of built-in type.
 
+* **Access Control and Encapsulation**:
+	* In `C++` we use **access specifiers** (`public`, `private`) to enforce `Encapsulation`.
 
+* Members defined after `public` specifier are accessible to all parts of the program. 
+* The `public` members define the **`interface`** of the `class`.
+* Members defined after `private` specifier are accessible to the **member functions** of the `class` but are NOT accessible to the <code> that uses the `class`.
+* The `private` section **Encapsulates** the implementation.
+* The `constructor` and `member functions` that are part of the **interface** follow the `public` specifier.
+* The data members and the functions that are part of the **implementation** follow the `private` specifier.
 
