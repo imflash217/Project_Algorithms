@@ -27,7 +27,7 @@ public:		// added access specifiers
 	std::string isbn() const {return bookNo;}	// declaration and definition
 	Sales_data& combine(const Sales_data&);		// declaration
 
-private:		// added access specifiers
+private:		// added access specifiers	
 	double avg_price() const{
 		if(units_sold){
 			return revenue/units_sold;
@@ -42,7 +42,7 @@ private:		// added access specifiers
 	double revenue = 0.0;			// in-class initializer for revenue
 };
 
-// member function definitions
+// MEMBER function definitions
 /*
 Sales_data::Sales_data(std::istream &is){
 	read(is, *this);
@@ -65,8 +65,12 @@ Sales_data& Sales_data::combine(const Sales_data &rhs){
 	return *this;	// return the object on which the combine function is called
 }
 
-// non-member function definitions of Sales_data interface
-// declarations of these non-member functions are done in Sales_data.h header file
+// NON-MEMBER FUNCTIONS definitions of Sales_data interface
+// These functions are part of the Sales_data interface but not memebers of the class,
+// so they will not Compile if we use 'class' instead of 'struct'. 
+// To compile these we need to declare these as 'friend' in the class definition
+
+// Declarations of these non-member functions are done in Sales_data.h header file
 
 // NOTE: reading/writing to a stream changes the stream, so both the functions below take 
 // ordinary references not references to 'const' for stream
