@@ -1299,8 +1299,64 @@ bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
 
 * Members defined after `public` specifier are accessible to all parts of the program. 
 * The `public` members define the **`interface`** of the `class`.
-* Members defined after `private` specifier are accessible to the **member functions** of the `class` but are NOT accessible to the <code> that uses the `class`.
+* Members defined after `private` specifier are accessible to the **member functions** of the `class` but are NOT accessible to the `<code>` that uses the `class`.
 * The `private` section **Encapsulates** the implementation.
 * The `constructor` and `member functions` that are part of the **interface** follow the `public` specifier.
 * The data members and the functions that are part of the **implementation** follow the `private` specifier.
+* Each `access specifier` specifies the access level to the succeeding members. 
+* **The specified access specifier remains in effect untill the next access specifier or the end of the class body.**
+* We can define a class type either by using 
+	* **`struct`**
+	* **`class`**
+
+* If we use `struct` keyword, then the members defined before the first access specifier are `public`.
+* If we use `class` keyword, then the member defined before the first access specifier are `private`.
+
+```cpp
+// using 'struct' keyword to define a class
+struct myClassA{
+	std::string m_string = "Rustom";		// public (by default due to 'struct' keyword)
+
+private:
+	std::string m_str = "Potter";			// private (due to 'private' access specifier)
+	std::int m_int = 217;					// private (due to 'private' access specifier)
+
+public:
+	std::string new_str = "RustomPotter217";	// public (due to 'public' access specifier)
+}
+
+// using 'class' keyword to define a class
+class myClassB{
+	std::string m_string = "Rustom";		// private (by default due to 'class' keyword)
+
+private:
+	std::string m_str = "Potter";			// private (due to 'private' access specifier)
+	std::int m_int = 217;					// private (due to 'private' access specifier)
+
+public:
+	std::string new_string = "RustomPotter217";		// public (due to 'public' access specifier)
+}
+
+```
+
+* **`friend`** keyword :
+	* A class can allow another class or function to access its non-`public` member functions by making that class or function its **`friend`**.
+	* **Friends** are not members of the class and are **not affected by the access specifiers**
+	* `friend` declaration may appear only inside a class definition
+	* Ordinarily its a good idea to group `friend` declaration at the beginning or end of the class definition
+
+```cpp
+class Sales_data{
+	// friend declaration for non-member Sales_data function 
+	friend std::istream &read(std::istream&, Sales_data&)
+
+	//......
+};
+```
+
+* Although, user code need not change when the `class` definition changes, the source code that uses a class must be compiled everytime the class definition changes.
+
+* 
+
+
 
