@@ -13,6 +13,11 @@
 
 class Sales_data{
 
+// 'friend' declarations for non-member Sales_data 
+friend Sales_data &read(std::istream&, Sales_data&);
+friend Sales_data &print(std::ostream&, const Sales_data&);
+friend Sales_data &add(const Sales_data&, const Sales_data&);
+
 public:		// added access specifiers
 	// Constructors
 	Sales_data() = default;
@@ -37,7 +42,7 @@ private:		// added access specifiers
 	}					// declaration & definition
 
 	// data members
-	std::string bookNo;				// no in-class initializer, so will be default-initialized (if no constructor)
+	std::string bookNo;				// no in-class initializer, will be default-initialized (if no constructor)
 	unsigned units_sold = 0;		// in-class initializer for units_sold
 	double revenue = 0.0;			// in-class initializer for revenue
 };
