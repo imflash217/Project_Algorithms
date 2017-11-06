@@ -1344,6 +1344,10 @@ public:
 	* **Friends** are not members of the class and are **not affected by the access specifiers**
 	* `friend` declaration may appear only inside a class definition
 	* Ordinarily its a good idea to group `friend` declaration at the beginning or end of the class definition
+	* A class a make another class its `friend`.
+	* A class can also declare another member function (must be defined previously) of another class as its `friend`.
+	* A `friend` function can be defined inside the class body.
+	
 
 ```cpp
 class Sales_data{
@@ -1356,7 +1360,21 @@ class Sales_data{
 
 * Although, user code need not change when the `class` definition changes, the source code that uses a class must be compiled everytime the class definition changes.
 
+* In addition to data and function members, a `class` can define its own **local names for `types`**
+* **Type names** defined by a class are subject to the same access control as any other member. It can be either `public` or `private`.
+* Unlike ordinary members, members that define types must appear before they are used. As a result, type members usually appear at the beginning of the class.
+
+* Member functions defined inside the class are automatically `inline`.
+* We can explicitly declare a member function as `inline` as part of its **declaration** inside the class body.
+* We can also define a member function as `inline` by specifying `inline` on the function **definition** outside the class body.
+
+* **`mutable` data members**: 
+	* Data members that can be modified even inside a `const` member function.
+	* A `mutable` data member is never `const` even if it is a member of a `const` object.
+	* A `const` member function may change the value of a `mutable` data member.
+
+* `in-class` initializers must use:
+	* **=** form of initialization or,
+	* **direct form** of initialization (using curly braces)
+
 * 
-
-
-
