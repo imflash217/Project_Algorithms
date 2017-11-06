@@ -1347,7 +1347,10 @@ public:
 	* A class a make another class its `friend`.
 	* A class can also declare another member function (must be defined previously) of another class as its `friend`.
 	* A `friend` function can be defined inside the class body.
-	
+	* Each class controls which classes or functions are its friends.
+	* A `friend` of a `friend` has no access to the class members.
+	* When we declare a member function as a `friend`; we must specify the `class` of which that function is a member.
+	* A `friend` declaration affects access, but it is not declaration in an ordinary sense.
 
 ```cpp
 class Sales_data{
@@ -1377,4 +1380,9 @@ class Sales_data{
 	* **=** form of initialization or,
 	* **direct form** of initialization (using curly braces)
 
-* 
+* We access `type members` from the class using the `Scope operator (::)`
+
+
+
+
+
