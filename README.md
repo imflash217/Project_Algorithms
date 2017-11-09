@@ -185,13 +185,13 @@ not			xor_eq
 		* `lvalue`
 	* Pointers
 
-* **Refrences**: A reference is NOT an object. It's just another name for an already existing object.
+* **References**: A reference is NOT an object. It's just another name for an already existing object.
 
 	When we define a refernce, instead of copying the initializer's value, we **bind** the refernce to its initializer.
 
-	Once initialized, a refernce remains bound to its initial object.
-	There is no way to rebind a refernce to refer to another object.
-	As there is no way to rebind a refernce, **`references` must be initialized**.
+	Once initialized, a reference remains bound to its initial object.
+	There is no way to rebind a reference to refer to another object.
+	As there is no way to rebind a reference, **`references` must be initialized**.
 
 ```cpp
 int ival = 217;
@@ -650,6 +650,7 @@ string good_Array[sz];		// OK: "sz" is a constant expression i.e its value will 
 string m_array[get_size()];	// OK if get_size() is a constant expression; ERROR otherwise
 ```
 * When we **list-initialize** an array, we **can** omit the dimension
+
 ```cpp
 const unsigned sz = 3;
 int ia1[sz] = {0,1,2};			// OK: an array of 3 ints with elements {0,1,2}
@@ -698,7 +699,7 @@ int &(*m_array2)[10] = /* ? */;		//ERROR: arrays cannot hold refernces (b'coz re
 * In C++, when we use an `array`, the Compiler ordinarily converts the array to a pointer.
 * When we use an `object` of array type, we are really using a `pointer` to the first element of the array.
 * **operations on `array` are actually operations on `pointer`**.
-* When we use an `array` as an initializer for a variable defined using **`auto`**, the deduced type is a `pointer` not an `array`. But, if we use `decltype` then this issue doesn't arrise.
+* When we use an `array` as an initializer for a variable defined using **`auto`**, the deduced type is a `pointer` not an `array`. But, if we use `decltype` then this issue doesn't arise.
 
 ```cpp
 int ia[] = {0,1,2,3,4,5,6,7,8,9};	// ia is an array of ints
@@ -1381,8 +1382,53 @@ class Sales_data{
 	* **direct form** of initialization (using curly braces)
 
 * We access `type members` from the class using the `Scope operator (::)`
+* **Name Lookup** :  The process of finding which `declarations` match the use of a name.
 
+* Ordinarily, an inner scope can redefine a name from an outer scope even if that name has already been used in the inner scope. **However, in a class, if a member uses a name from an outer scope and that name is a `type`, then the class may not subsequently redefine that name**
 
+```cpp
+typedef double Money;
+class Account{
+public:
+	Money balance (){ return bal;}
+private:
+	typedef double Money;		// ERROR. cannot redefine Money
+	Money bal;
+};
+```
+
+* Although its an ERROR to **redefine a `name type`**, Compilers are not required to diagnose this error.
+* Definitions of `type names` usually should appear in the beginning of the `class`. That way, any member that uses that type name will be seen after the type name has already been defined.
+
+* `Default Constructor` is used automatically whenever an object is `Default-` or `Value-` initialized.
+
+* `Default initialization` happens:
+	* When we define non-`static` variables or `arrays` at block scope _without initializers_.
+	* When a `class` that itself has members of `class-type` uses the _synthesized default constructor_.
+	* When members of `class-type` are _not explicitly initialized_ in a constructor initializer list.
+
+* `Value Initialization` happens:
+	* during `array` initialization, when we provide fewer initializers than the size of the array.
+	* when we define a local `static` object without an initializer.
+	* when we _explicitly_ request value-initialization by writing an expression of the form `T()` where `T` is the name of a `type`.
+
+* **Converting Constructor** : A constructor that can be called with a single argument defines an _implicit conversion_ from the constructor's parameter type to the class type.
+
+* The compiler will apply only one `type` conversion at a time.
+* Class type conversions are not always useful, b'coz the class-type object created is temporary.
+* We can prevent the use of constructor in a context that requires and implicit conversion by declaring the **constructor** as **`explicit`**
+
+* The `explicit` keyword is meaningful only on constructors that can be called with a single argument.
+* Constructors that require more than one argument are not used to perform an implicit type conversion, so there is no requirement to convert those constructors as `explicit`.
+
+* One context in which _implicit conversions_ happen is when we use **copy initialization**.
+* We cannot use `explicit` constructors with **copy initialization**. We must use **direct initialization**
+* When a constructor is declared `explicit`, it can _only_ be used with the **direct initialization**
+* The compiler will not use `explicit` constructors in automatic conversions.
+* We can use `static_cast` to perform an explicit rather than implicit conversion.
+
+* The `string` constructor that takes a single parameter of type `const char*` is NOT `explicit`.
+* The `vector` constructor that takes a size is `explicit`.
 
 
 
