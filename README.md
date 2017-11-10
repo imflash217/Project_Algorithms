@@ -209,13 +209,13 @@ int &refVal3 = refVal;	// refVal3 refers to the object to which refVal is bound 
 int j = refVal3;	// initializes j to same value as ival
 
 ```
-* The type of refernce and object must be the same.
-* A plain refernce can be bound only to an `object`; not to a `literal` or `an expresion`.
+* The type of reference and object must be the same.
+* A plain reference can be bound only to an `object`; not to a `literal` or `an expresion`.
 * But, we can bind a `const reference` to a `literal`.
 
 ```cpp
-int &refVal4 = 10;	// ERROR. Reference can't be bount to a literal (10)
-const int &ref = 217;	// OK: We can bind a const reference to a literal (217)
+int &refVal4 = 10;	// ERROR. plain reference can't be bountd to a literal (10)
+const int &ref = 217;	// OK: We can bind a 'const' reference to a literal (217)
 double m_dval = 3.14;
 int &refVal5 = m_dval;	// ERROR. Reference and object types must match. initializer must be an int type
 ```
@@ -857,11 +857,11 @@ const int cival = 17;
 const double cdval = 2.17;
 
 switch (ch){
-	case ival :		// ERROR : ival is not a constant expression
+	case ival :			// ERROR : ival is not a constant expression
 	case 2.1798 : 		// ERROR : non-integer case labels not allowed
 	case cdval :		// ERROR : non-integer case labels not allowed
 	
-	case 2 :		// OK : integer literals are allowed
+	case 2 :			// OK : integer literals are allowed
 	case 'potter' : 	// OK : constant expressions allowed
 	case cival :		// OK : 'const int' allowed
 	
@@ -1293,7 +1293,7 @@ bool b4 = *ptrFunc("Rustom", "Potter");			// ERROR
 
 * If a `class C1` has a member `X` that has a clasa type `class C2` and class `C2` doesnot have a defualt constructor then the **compiler** cannot initialize the member `X` (if `C1` also does not have a defualt initializer)
 
-* Constructors should not override `in-class` initializers except to use a different initial value. If you can't use `in-class initializers` then each constructor should explicitly initialize each member of built-in type.
+* Constructors should not override `in-class initializers` except to use a different initial value. If you can't use `in-class initializers` then each constructor should explicitly initialize each member of built-in type.
 
 * **Access Control and Encapsulation**:
 	* In `C++` we use **access specifiers** (`public`, `private`) to enforce `Encapsulation`.
@@ -1430,5 +1430,16 @@ private:
 * The `string` constructor that takes a single parameter of type `const char*` is NOT `explicit`.
 * The `vector` constructor that takes a size is `explicit`.
 
+* An `aggregate class` give users direct access to its members and has special initialization syntax.
+* A class is `aggregate` if:
+	* all of its data members are `public`.
+	* it does not define any constructors.
+	* it has no `in-class initializers`.
+	* it has no `base class` or `virtual functions`.
+
+* The parameters and `return type` of `constexpr` functions must be `literal` types.
+
+* An `aggregate class` whose data members are all of `literal` type is a **`literal class`**
+* **`Destructor`** : The class member that destroys objects of the `class type`.
 
 
